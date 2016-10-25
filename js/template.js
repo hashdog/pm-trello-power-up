@@ -4,7 +4,7 @@ TrelloPowerUp.initialize({
       icon: './images/icon-white.svg',
       text: 'Button Test',
       callback: function(t){
-        return t.popup({
+        return t.overlay({
           title: "Card Button Popup",
           url: './overlay.html'
         });
