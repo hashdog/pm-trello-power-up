@@ -1,3 +1,6 @@
+var WHITE_ICON = './images/icon-white.svg';
+var GRAY_ICON = './images/icon-gray.svg';
+
 var parkMap = {
   acad: 'Acadia National Park',
   arch: 'Arches National Park',
