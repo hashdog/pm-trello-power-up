@@ -7,6 +7,7 @@
   },
   "author": "hashdog.com",
   "capabilities": [
+    "callback",
     "card-buttons",
     "show-settings"
   ],
