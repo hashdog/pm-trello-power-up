@@ -1,22 +1,14 @@
 {
-  "name": "Static Template",
-  "description": "",
-  "details": "A static sample Power-Up hosted on GitHub pages. Feel free to fork [this repository](https://github.com/trello/power-up-template) as a starting point for your own Power-Up.",
+  "name": "Hashdog",
+  "description": "A Hashdog powerUp to add new PM functionalities",
+  "details": "A Power-Up with PM tools made by Hashdog.",
   "icon": {
     "url": "./images/logo.png"
   },
-  "author": "Trello Inc",
+  "author": "hashdog.com",
   "capabilities": [
-    "attachment-sections",
-    "attachment-thumbnail",
-    "board-buttons",
     "callback",
-    "card-badges",
-    "card-buttons",
-    "card-detail-badges",
-    "card-from-url",
-    "format-url",
-    "show-settings"
+    "card-buttons"
   ],
   "connectors": {
     "iframe": {
