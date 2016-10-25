@@ -1,7 +1,7 @@
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
-      icon: './images/icon.svg',
+      icon: './images/logo.png',
       text: 'Button Text',
       callback: function(t){
         return t.popup({
