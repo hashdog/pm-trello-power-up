@@ -7,16 +7,8 @@
   },
   "author": "hashdog.com",
   "capabilities": [
-    "attachment-sections",
-    "attachment-thumbnail",
-    "board-buttons",
     "callback",
-    "card-badges",
-    "card-buttons",
-    "card-detail-badges",
-    "card-from-url",
-    "format-url",
-    "show-settings"
+    "card-buttons"
   ],
   "connectors": {
     "iframe": {
