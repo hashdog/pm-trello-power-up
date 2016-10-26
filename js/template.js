@@ -13,7 +13,7 @@ TrelloPowerUp.initialize({
   },
   'show-settings': function(t, options){
     return t.popup({
-      title: 'Settings',
+      title: 'Google Form Settings',
       url: './settings.html',
       height: 184
     });
