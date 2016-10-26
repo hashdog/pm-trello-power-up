@@ -21,7 +21,7 @@ t.render(function(){
 });
 
 document.getElementById('save').addEventListener('click', function(){
-  return t.set('board', 'shared', 'vegetable', gFormUrl.value)
+  return t.set('board', 'shared', 'google-form-url', gFormUrl.value)
   .then(function(){
     t.closePopup();
   })
