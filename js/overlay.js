@@ -10,7 +10,7 @@ t.render(function(){
   // and then called each time something changes that
   // you might want to react to, such as new data being
   // stored with t.set()
-  var card = t.card('name','shortLink');
+  var card = t.card;
   console.log('card: ', card);
   console.log('card.name: ', card.name);
   console.log('card.shortLink: ', card.shortLink);
