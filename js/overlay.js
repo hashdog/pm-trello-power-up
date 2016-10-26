@@ -13,7 +13,7 @@ t.render(function(){
   var card = t.card('name','shortLink');
   console.log('card.get("name"): ', card.get('name'));
   console.log('card.get("shortLink"): ', card.get("shortLink");
-  document.getElementsByTagName('iframe')[0].src = "https://docs.google.com/forms/d/e/1FAIpQLSeXKOZiY8QNUpCVbNQKEG0_Dg6IAcPv-DlsO987xhd7zC01Vg/viewform?embedded=true&entry.995291397=pastor2";
+  document.getElementsByTagName('iframe')[0].src = "https://docs.google.com/forms/d/e/1FAIpQLSeXKOZiY8QNUpCVbNQKEG0_Dg6IAcPv-DlsO987xhd7zC01Vg/viewform?embedded=true&entry.995291397=" + card.get('name');
 });
 
 // close overlay if user clicks outside our content
