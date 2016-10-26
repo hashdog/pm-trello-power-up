@@ -11,7 +11,7 @@ t.render(function(){
   ])
   .spread(function(savedGFormUrl){
     if(savedGFormUrl){
-      vegetableSelector.value = savedVegetable;
+      gFormUrl.value = savedGFormUrl;
     }
   })
   .then(function(){
