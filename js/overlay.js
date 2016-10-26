@@ -10,6 +10,7 @@ t.render(function(){
   // and then called each time something changes that
   // you might want to react to, such as new data being
   // stored with t.set()
+  console.log('card: ', t.card());
 });
 
 // close overlay if user clicks outside our content
@@ -26,4 +27,3 @@ document.addEventListener('keyup', function(e) {
   }
 });
 
-console.log('card: ', t.card());
