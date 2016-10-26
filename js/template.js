@@ -2,10 +2,10 @@ TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
       icon: './images/icon-gray.svg',
-      text: 'Button Test',
+      text: 'Time track',
       callback: function(t){
         return t.overlay({
-          title: "Card Button Popup",
+          title: 'Time track',
           url: './overlay.html'
         });
       }
