@@ -26,4 +26,4 @@ document.addEventListener('keyup', function(e) {
   }
 });
 
-console.log(t.card());
+console.log('card: ', t.card());
