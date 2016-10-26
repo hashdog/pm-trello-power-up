@@ -12,8 +12,8 @@ t.render(function(){
   // stored with t.set()
   var card = t.card('name','shortLink');
   console.log('card: ', card);
-  console.log('card["name"]: ', card['name']);
-  console.log('card["shortLink"]: ', card['shortLink']);
+  console.log('card["name"]: ', card.name);
+  console.log('card["shortLink"]: ', card.shortLink);
   document.getElementsByTagName('iframe')[0].src = "https://docs.google.com/forms/d/e/1FAIpQLSeXKOZiY8QNUpCVbNQKEG0_Dg6IAcPv-DlsO987xhd7zC01Vg/viewform?embedded=true&entry.995291397=pastor2";
 });
 
