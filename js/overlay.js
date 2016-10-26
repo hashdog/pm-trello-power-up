@@ -14,6 +14,7 @@ t.render(function(){
   console.log('card: ', card);
   console.log('card["name"]: ', card['name']);
   console.log('card["shortLink"]: ', card['shortLink']);
+  document.getElementsByTagName('iframe')[0].src = "https://docs.google.com/forms/d/e/1FAIpQLSeXKOZiY8QNUpCVbNQKEG0_Dg6IAcPv-DlsO987xhd7zC01Vg/viewform?embedded=true&entry.995291397=pastor2";
 });
 
 // close overlay if user clicks outside our content
@@ -29,4 +30,3 @@ document.addEventListener('keyup', function(e) {
     t.closeOverlay().done();
   }
 });
-
