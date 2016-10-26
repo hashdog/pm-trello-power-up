@@ -7,7 +7,7 @@ var gFormUrl = document.getElementById('google-form-url');
 
 t.render(function(){
   return Promise.all([
-    t.get('board', 'shared', 'google-form-url')
+    t.get('board', 'shared', 'url')
   ])
   .spread(function(savedGFormUrl){
     if(savedGFormUrl){
@@ -21,7 +21,7 @@ t.render(function(){
 });
 
 document.getElementById('save').addEventListener('click', function(){
-  return t.set('board', 'shared', 'google-form-url', gFormUrl.value)
+  return t.set('board', 'shared', 'url', gFormUrl.value)
   .then(function(){
     t.closePopup();
   })
