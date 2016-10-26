@@ -11,3 +11,7 @@ body {
   max-width: 600px;
   max-height: 90%;
 }
+
+#content iframe {
+  width: 100%;
+}
