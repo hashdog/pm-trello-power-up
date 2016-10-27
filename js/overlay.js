@@ -18,7 +18,7 @@ t.render(function(){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
-      document.getElementsById('overlay-message')[0]
+      document.getElementById('overlay-message')
       .textContent = 'Please add form url on settings';
     }
     if(cardData){
@@ -27,7 +27,7 @@ t.render(function(){
     }
   })
   .then(function(){
-    userName = document.getElementsByClassName("js-member-name")[0].textContent;
+    userName = '';
     formUrl = gFormUrl + "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userName +
     "&entry.1600294234" + cardUrl;
