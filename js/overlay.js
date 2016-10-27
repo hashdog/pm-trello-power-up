@@ -5,8 +5,8 @@ var t = TrelloPowerUp.iframe();
 var gFormUrl = '';
 var cardName = '';
 var cardShortLink = '';
-var userName = t.arg('user');
-// var usernick = document.getElementsByClassName("js-member-name")[0].innerText;
+// var userName = t.arg('user');
+var userName = document.getElementsByClassName("js-member-name")[0].innerText;
 
 // this function we be called once on initial load
 // and then called each time something changes

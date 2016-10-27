@@ -7,7 +7,7 @@ TrelloPowerUp.initialize({
         return t.overlay({
           title: 'Time track',
           url: './overlay.html',
-          args: { user: document.getElementsByClassName("js-member-name")[0].innerText; }
+          args: { user: '' }
         });
       }
     }];
