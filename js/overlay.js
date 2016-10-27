@@ -17,7 +17,9 @@ t.render(function(){
     return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
   })
   .then(function(members){
+    console.log(members);
     userName = members.map(function(a){ return a.email; });
+    console.log(userName);
   })
 
   return Promise.all([
