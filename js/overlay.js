@@ -9,6 +9,7 @@ var cardShortLink = '';
 // var userName = document.getElementsByClassName("js-member-name")[0].innerText;
 var userName = $(".js-member-name").text();
 
+console.log("hola");
 console.log($(".js-member-name").text());
 
 // this function we be called once on initial load
