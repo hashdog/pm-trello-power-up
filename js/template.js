@@ -14,6 +14,14 @@ TrelloPowerUp.initialize({
       }
     }];
   },
+  'card-badges': function(t, card) {
+    return [
+      {
+        icon: './images/icon-gray.svg',
+        text: '0'
+      }
+    ];
+  },
   'show-settings': function(t, options){
     return t.popup({
       title: 'Google Form Settings',
