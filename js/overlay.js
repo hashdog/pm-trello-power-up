@@ -12,7 +12,7 @@ var userName = t.arg('user');
 t.render(function(){
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name','url')
+    t.card('name', 'shortLink')
   ])
   .spread(function(savedGFormUrl, cardData){
     if(savedGFormUrl){
@@ -23,7 +23,7 @@ t.render(function(){
     }
     if(cardData){
       cardName = cardData.name;
-      cardUrl = cardData.url;
+      cardUrl = cardData.shortLink;
     }
   })
   .then(function(){
