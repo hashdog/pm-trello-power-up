@@ -1,3 +1,5 @@
+var userName = document.getElementsByClassName("js-member-name")[0].textContent;
+
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
@@ -6,7 +8,8 @@ TrelloPowerUp.initialize({
       callback: function(t){
         return t.overlay({
           title: 'Time track',
-          url: './overlay.html'
+          url: './overlay.html',
+          args: { user: userName }
         });
       }
     }];

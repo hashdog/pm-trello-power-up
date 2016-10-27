@@ -1,11 +1,11 @@
 /* global TrelloPowerUp */
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
-var formUrl = '';
+
 var gFormUrl = '';
 var cardName = '';
 var cardShortLink = '';
-var userName = '';
+var userName = t.arg('user');
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -27,12 +27,10 @@ t.render(function(){
     }
   })
   .then(function(){
-    userName = '';
-    formUrl = gFormUrl + "?embedded=true&entry.995291397=" + cardName +
+    document.getElementsByTagName('iframe')[0].src = gFormUrl +
+    "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userName +
     "&entry.1600294234" + cardUrl;
-
-    document.getElementsByTagName('iframe')[0].src = formUrl;
   })
 });
 
