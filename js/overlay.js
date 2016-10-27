@@ -38,15 +38,16 @@ t.render(function(){
       cardName = cardData.name;
       cardUrl = cardData.url;
     }
-    members
-    .filter(function(member){
-      return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
-    })
-    .then(function(members){
-      console.log(members);
-      userName = members.map(function(a){ return a.email; });
-      console.log(userName);
-    })
+    console.log(members);
+    // members
+    // .filter(function(member){
+    //   return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
+    // })
+    // .then(function(members){
+    //   console.log(members);
+    //   userName = members.map(function(a){ return a.email; });
+    //   console.log(userName);
+    // })
   })
   .then(function(){
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
