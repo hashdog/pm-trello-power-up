@@ -1,6 +1,9 @@
 /* global TrelloPowerUp */
-
+var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
+var gFormUrl = '';
+var cardName = '';
+var cardShortLink = '';
 
 // you can access arguments passed to your iframe like so
 var num = t.arg('rand');
@@ -10,10 +13,31 @@ t.render(function(){
   // and then called each time something changes that
   // you might want to react to, such as new data being
   // stored with t.set()
+
   var card = t.card('name','shortLink');
+  console.log('card: ', card);
   console.log('card.get("name"): ', card.get('name'));
   console.log('card.get("shortLink"): ', card.get("shortLink"));
-  document.getElementsByTagName('iframe')[0].src = "https://docs.google.com/forms/d/e/1FAIpQLSeXKOZiY8QNUpCVbNQKEG0_Dg6IAcPv-DlsO987xhd7zC01Vg/viewform?embedded=true&entry.995291397=" + card.get('name');
+  return Promise.all([
+    t.get('board', 'shared', 'url'),
+    t.card('name','shortLink')
+  ])
+  .spread(function(savedGFormUrl, cardData){
+    if(savedGFormUrl){
+      gFormUrl = savedGFormUrl;
+    } else {
+      console.log('Please add form url on settings');
+    }
+    if(cardData){
+      cardName = card.name;
+      cardShortLink = card.shortLink;
+    }
+  })
+  .then(function(){
+    var formUrl = gFormUrl + "?embedded=true&entry.995291397=" + cardName;
+    console.log('formUrl: ', formUrl);
+    document.getElementsByTagName('iframe')[0].src = formUrl;
+  })
 });
 
 // close overlay if user clicks outside our content
