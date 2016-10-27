@@ -12,7 +12,7 @@ var userName = t.arg('user');
 t.render(function(){
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name', 'shortLink')
+    t.card('name', 'url')
   ])
   .spread(function(savedGFormUrl, cardData){
     if(savedGFormUrl){
@@ -23,14 +23,14 @@ t.render(function(){
     }
     if(cardData){
       cardName = cardData.name;
-      cardUrl = cardData.shortLink;
+      cardUrl = cardData.url;
     }
   })
   .then(function(){
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
     "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userName +
-    "&entry.1600294234" + cardUrl;
+    "&entry.1600294234=" + cardUrl;
   })
 });
 
