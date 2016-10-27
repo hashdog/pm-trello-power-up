@@ -1,41 +1,37 @@
 /* global TrelloPowerUp */
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
+var formUrl = '';
 var gFormUrl = '';
 var cardName = '';
 var cardShortLink = '';
+var userName = '';
 
-// you can access arguments passed to your iframe like so
-var num = t.arg('rand');
-
+// this function we be called once on initial load
+// and then called each time something changes
 t.render(function(){
-  // this function we be called once on initial load
-  // and then called each time something changes that
-  // you might want to react to, such as new data being
-  // stored with t.set()
-
-  var card = t.card('name','shortLink');
-  console.log('card: ', card);
-  console.log('card.get("name"): ', card.get('name'));
-  console.log('card.get("shortLink"): ', card.get("shortLink"));
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name','shortLink')
+    t.card('name','url')
   ])
   .spread(function(savedGFormUrl, cardData){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
-      console.log('Please add form url on settings');
+      document.getElementsById('overlay-message')[0]
+      .textContent = 'Please add form url on settings';
     }
     if(cardData){
       cardName = cardData.name;
-      cardShortLink = cardData.shortLink;
+      cardUrl = cardData.url;
     }
   })
   .then(function(){
-    var formUrl = gFormUrl + "?embedded=true&entry.995291397=" + cardName;
-    console.log('formUrl: ', formUrl);
+    userName = document.getElementsByClassName("js-member-name")[0].textContent;
+    formUrl = gFormUrl + "?embedded=true&entry.995291397=" + cardName +
+    "&entry.33315152=" + userName +
+    "&entry.1600294234" + cardUrl;
+
     document.getElementsByTagName('iframe')[0].src = formUrl;
   })
 });
