@@ -7,7 +7,7 @@ var cardName = '';
 var cardShortLink = '';
 // var userName = t.arg('user');
 // var userName = document.getElementsByClassName("js-member-name")[0].innerText;
-var userName = $j(".js-member-name").text();
+var userName = $(".js-member-name").text();
 
 // this function we be called once on initial load
 // and then called each time something changes
