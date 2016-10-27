@@ -29,8 +29,8 @@ t.render(function(){
       console.log('Please add form url on settings');
     }
     if(cardData){
-      cardName = card.name;
-      cardShortLink = card.shortLink;
+      cardName = cardData.name;
+      cardShortLink = cardData.shortLink;
     }
   })
   .then(function(){
