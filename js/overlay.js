@@ -2,10 +2,15 @@
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
-var gFormUrl = '';
+var formUrl = '';
 var cardName = '';
 var cardShortLink = '';
 var userName = t.arg('user');
+
+var entryField = function(label) {
+  var selector = "[aria-label='" + label + "']";
+  return document.querySelectorAll(selector)[0].name
+}
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -16,7 +21,7 @@ t.render(function(){
   ])
   .spread(function(savedGFormUrl, cardData){
     if(savedGFormUrl){
-      gFormUrl = savedGFormUrl;
+      formUrl = savedGFormUrl;
     } else {
       document.getElementById('overlay-message')
       .textContent = 'Please add form url on settings';
@@ -27,10 +32,10 @@ t.render(function(){
     }
   })
   .then(function(){
-    document.getElementsByTagName('iframe')[0].src = gFormUrl +
-    "?embedded=true&entry.995291397=" + cardName +
-    "&entry.33315152=" + userName +
-    "&entry.1600294234=" + cardUrl;
+    document.getElementsByTagName('iframe')[0].src = formUrl +"?embedded=true" +
+    "&" + entryField('card name') + "=" + cardName +
+    "&" + entryField('user') + "=" + userName +
+    "&" + entryField('card url') + "=" + cardUrl;
   })
 });
 
