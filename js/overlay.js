@@ -9,9 +9,6 @@ var cardShortLink = '';
 // var userName = document.getElementsByClassName("js-member-name")[0].innerText;
 var userName = $(".js-member-name").text();
 
-console.log("hola");
-console.log($(".js-member-name").text());
-
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
@@ -42,6 +39,8 @@ t.render(function(){
       cardName = cardData.name;
       cardUrl = cardData.url;
     }
+    userName = $(".js-member-name").text();
+    console.log($(".js-member-name").text());
     console.log(members);
     console.log(members[0].fullName);
     // members
