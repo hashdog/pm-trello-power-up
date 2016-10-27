@@ -11,22 +11,23 @@ var userName = t.arg('user');
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
-  t.card('members')
-  .get('members')
-  .filter(function(member){
-    return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
-  })
-  .then(function(members){
-    console.log(members);
-    userName = members.map(function(a){ return a.email; });
-    console.log(userName);
-  })
+  // t.card('members')
+  // .get('members')
+  // .filter(function(member){
+  //   return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
+  // })
+  // .then(function(members){
+  //   console.log(members);
+  //   userName = members.map(function(a){ return a.email; });
+  //   console.log(userName);
+  // })
 
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name', 'url')
+    t.card('name', 'url'),
+    t.card('members').get('members')
   ])
-  .spread(function(savedGFormUrl, cardData){
+  .spread(function(savedGFormUrl, cardData, members){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
@@ -37,6 +38,15 @@ t.render(function(){
       cardName = cardData.name;
       cardUrl = cardData.url;
     }
+    members
+    .filter(function(member){
+      return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
+    })
+    .then(function(members){
+      console.log(members);
+      userName = members.map(function(a){ return a.email; });
+      console.log(userName);
+    })
   })
   .then(function(){
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
