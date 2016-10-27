@@ -6,7 +6,7 @@ var gFormUrl = '';
 var cardName = '';
 var cardShortLink = '';
 var userName = t.arg('user');
-var usernick = document.getElementsByClassName("js-member-name")[0].innerText;
+// var usernick = document.getElementsByClassName("js-member-name")[0].innerText;
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -18,7 +18,7 @@ t.render(function(){
   ])
   .spread(function(savedGFormUrl, cardData, members){
     console.log(members);
-    console.log(usernick);
+    // console.log(usernick);
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
