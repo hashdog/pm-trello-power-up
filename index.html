@@ -1,4 +1,24 @@
 <html>
   <script src="https://trello.com/power-ups/power-up.min.js"></script>
   <script src="./js/template.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.slim.js"
+  integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA="
+  crossorigin="anonymous"></script>
+
+  <script>
+
+    var $j = jQuery.noConflict();
+    // $j is now an alias to the jQuery function; creating the new alias is optional.
+
+    $j(document).ready(function() {
+        $j( "div" ).hide();
+    });
+
+    // The $ variable now has the prototype meaning, which is a shortcut for
+    // document.getElementById(). mainDiv below is a DOM element, not a jQuery object.
+    window.onload = function() {
+        var mainDiv = $( "main" );
+    }
+  </script>
 </html>
