@@ -11,14 +11,20 @@ var userName = t.arg('user');
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
+  t.card('members')
+  .get('members')
+  .filter(function(member){
+    return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
+  })
+  .then(function(members){
+    userName = members.map(function(a){ return a.email; });
+  })
+
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name', 'url'),
-    t.card('members')
+    t.card('name', 'url')
   ])
-  .spread(function(savedGFormUrl, cardData, members){
-    console.log(members);
-    // console.log(usernick);
+  .spread(function(savedGFormUrl, cardData){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
@@ -36,6 +42,7 @@ t.render(function(){
     "&entry.33315152=" + userName +
     "&entry.1600294234=" + cardUrl;
   })
+
 });
 
 // close overlay if user clicks outside our content
