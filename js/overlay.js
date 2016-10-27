@@ -39,8 +39,8 @@ t.render(function(){
       cardName = cardData.name;
       cardUrl = cardData.url;
     }
-    userName = $(".js-member-name").text();
-    console.log($(".js-member-name").text());
+    userName = $(".js-member-name", parent.document).text();
+    console.log($(".js-member-name", parent.document).text());
     console.log(members);
     console.log(members[0].fullName);
     // members
