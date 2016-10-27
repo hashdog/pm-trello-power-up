@@ -39,6 +39,7 @@ t.render(function(){
       cardUrl = cardData.url;
     }
     console.log(members);
+    console.log(members[0].fullName);
     // members
     // .filter(function(member){
     //   return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
