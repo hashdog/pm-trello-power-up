@@ -38,6 +38,11 @@ t.render(function(){
     "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
+
+    $('.freebirdFormviewerViewCenteredContent form').on('submit', function(e){
+      console.log('ok');
+      e.preventDefault();
+    });
   })
 
 });
