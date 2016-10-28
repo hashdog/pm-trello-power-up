@@ -5,58 +5,38 @@ var t = TrelloPowerUp.iframe();
 var gFormUrl = '';
 var cardName = '';
 var cardShortLink = '';
-// var userName = t.arg('user');
-// var userName = document.getElementsByClassName("js-member-name")[0].innerText;
-var userName = $(".js-member-name").text();
+var userEmail = '';
 
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
-  // t.card('members')
-  // .get('members')
-  // .filter(function(member){
-  //   return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
-  // })
-  // .then(function(members){
-  //   console.log(members);
-  //   userName = members.map(function(a){ return a.email; });
-  //   console.log(userName);
-  // })
-
   return Promise.all([
     t.get('board', 'shared', 'url'),
     t.card('name', 'url'),
-    t.card('members').get('members')
+    t.card('organization', 'private', 'email')
   ])
-  .spread(function(savedGFormUrl, cardData, members){
+  .spread(function(savedGFormUrl, cardData, savedUserEmail){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
       document.getElementById('overlay-message')
-      .textContent = 'Please add form url on settings';
+      .textContent = 'Please add the google form url on settings';
     }
     if(cardData){
       cardName = cardData.name;
       cardUrl = cardData.url;
     }
-    userName = window.parent.$(".js-member-name").text();
-    console.log(window.parent.$(".js-member-name").text());
-    console.log(members);
-    console.log(members[0].fullName);
-    // members
-    // .filter(function(member){
-    //   return member.email.indexOf('Alejandro Lizardo Celiz') == 0;
-    // })
-    // .then(function(members){
-    //   console.log(members);
-    //   userName = members.map(function(a){ return a.email; });
-    //   console.log(userName);
-    // })
+    if(savedUserEmail){
+      userEmail = savedUserEmail;
+    } else {
+      document.getElementById('overlay-message')
+      .textContent = 'Please add your personal email on settings';
+    }
   })
   .then(function(){
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
     "?embedded=true&entry.995291397=" + cardName +
-    "&entry.33315152=" + userName +
+    "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
   })
 
