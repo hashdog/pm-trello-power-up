@@ -34,15 +34,14 @@ t.render(function(){
     }
   })
   .then(function(){
+    date = new Date;
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
     "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userEmail +
-    "&entry.1600294234=" + cardUrl;
-
-    $('.freebirdFormviewerViewCenteredContent form').on('submit', function(e){
-      console.log('ok');
-      e.preventDefault();
-    });
+    "&entry.1600294234=" + cardUrl +
+    "&entry.588722511_year=" + date.getFullYear() +
+    "&entry.588722511_month=" + date.getMonth() +
+    "&entry.588722511_day=" + date.getDate();
   })
 
 });
