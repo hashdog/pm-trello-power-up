@@ -12,25 +12,25 @@ var userEmail = '';
 t.render(function(){
   return Promise.all([
     t.get('board', 'shared', 'url'),
-    t.card('name', 'url'),
-    t.card('organization', 'private', 'email')
+    t.get('organization', 'private', 'email'),
+    t.card('name', 'url')
   ])
-  .spread(function(savedGFormUrl, cardData, savedUserEmail){
+  .spread(function(savedGFormUrl, savedUserEmail, cardData){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     } else {
       document.getElementById('overlay-message')
       .textContent = 'Please add the google form url on settings';
     }
-    if(cardData){
-      cardName = cardData.name;
-      cardUrl = cardData.url;
-    }
     if(savedUserEmail){
       userEmail = savedUserEmail;
     } else {
       document.getElementById('overlay-message')
       .textContent = 'Please add your personal email on settings';
+    }
+    if(cardData){
+      cardName = cardData.name;
+      cardUrl = cardData.url;
     }
   })
   .then(function(){
