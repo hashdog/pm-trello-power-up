@@ -12,6 +12,18 @@ TrelloPowerUp.initialize({
       }
     }];
   },
+  'card-buttons': function(t, options){
+    return [{
+      icon: './images/icon-gray.svg',
+      text: 'Estimate Card',
+      callback: function(t){
+        return t.overlay({
+          title: 'Estimate Card',
+          url: './estimate.html'
+        });
+      }
+    }];
+  },
   'card-badges': function(t, card) {
     return [
       {
