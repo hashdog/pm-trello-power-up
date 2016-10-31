@@ -36,7 +36,7 @@ t.render(function(){
   .then(function(){
     d = new Date;
     day = ("0" + d.getDate()).slice(-2);
-    month = ("0" + d.getMonth()).slice(-2);
+    month = ("0" + d.getMonth() + 1).slice(-2);
     year = d.getFullYear();
     console.log(year+'-'+month+'-'+day);
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
