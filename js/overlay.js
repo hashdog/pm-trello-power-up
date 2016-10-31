@@ -35,14 +35,15 @@ t.render(function(){
   })
   .then(function(){
     d = new Date;
+    day = ("0" + d.getDate()).slice(-2);
+    month = ("0" + d.getMonth()).slice(-2);
+    year = d.getFullYear();
+
     document.getElementsByTagName('iframe')[0].src = gFormUrl +
     "?embedded=true&entry.995291397=" + cardName +
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl +
-    "&entry.588722511_year=" + d.getFullYear() +
-    "&entry.588722511_month=" + d.getMonth() +
-    "&entry.588722511_day=" + d.getDate() +
-    "&entry.588722511=" + d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+    "&entry.588722511=" + year+'-'+month+'-'+day;
   })
 
 });
