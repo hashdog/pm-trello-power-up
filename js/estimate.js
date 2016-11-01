@@ -1,5 +1,5 @@
 console.log('estimate.js');
-var mySpreadsheet = 'https://drive.google.com/accounts?continueUrl=https://docs.google.com/a/hashdog.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit?usp%3Dforms_web_b%23gid%3D38447568&ddrp=1#'
+var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
 
 $('#switch-hitters').sheetrock({
   url: mySpreadsheet,
