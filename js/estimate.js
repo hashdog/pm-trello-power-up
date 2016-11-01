@@ -15,5 +15,4 @@ $('#switch-hitters').sheetrock({
   url: mySpreadsheet,
   query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
   fetchSize: 10
-  callback: myCallback
 });
