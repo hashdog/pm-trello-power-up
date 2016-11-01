@@ -10,10 +10,8 @@ TrelloPowerUp.initialize({
           args: { user: '' }
         });
       }
-    }];
-  },
-  'card-buttons': function(t, options){
-    return [{
+    },
+    {
       icon: './images/icon-gray.svg',
       text: 'Estimate Card',
       callback: function(t){
