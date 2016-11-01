@@ -13,5 +13,6 @@ var myCallback = function (error, options, response) {
 $('#switch-hitters').sheetrock({
   url: mySpreadsheet,
   query: "select A,B,C",
-  fetchSize: 2
+  fetchSize: 2,
+  callback: myCallback
 });
