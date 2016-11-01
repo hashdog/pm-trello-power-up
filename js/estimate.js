@@ -3,6 +3,6 @@ var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR
 
 $('#switch-hitters').sheetrock({
   url: mySpreadsheet,
-  query: "select A,B,C,D",
-  fetchSize: 10
+  query: "select A,B,C",
+  fetchSize: 2
 });
