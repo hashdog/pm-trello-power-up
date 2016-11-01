@@ -5,14 +5,14 @@ var myCallback = function (error, options, response) {
   if (error) {
     console.log(error);
   } else {
-    console.log(response.data);
-    console.log(response.html);
+    console.log("Data: ", response.data);
+    console.log("HTML: ", response.html);
   }
 };
 
 $('#switch-hitters').sheetrock({
   url: mySpreadsheet,
-  query: "select A,B,C",
+  query: "select B  where B = 'hernan' order by L desc",
   fetchSize: 2,
   callback: myCallback
 });
