@@ -4,6 +4,7 @@ var t = TrelloPowerUp.iframe();
 
 var mySpreadsheet = '';
 var getValues = '';
+var message = 'Please configure a google sheet on Hashdog setting power up. Please permit view the spreadsheet to users with the url.';
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -31,7 +32,7 @@ t.render(function(){
         }
       });
     } else {
-      $('#estimate-message').text('Please configure a google sheet on Hashdog setting power up');
+      $('#estimate-message').text(message);
     }
   })
 });
