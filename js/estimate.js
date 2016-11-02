@@ -15,7 +15,7 @@ t.render(function(){
   ])
   .spread(function(savedGSheetUrl, cardData){
     if(savedGSheetUrl){
-      mySpreadsheet.value = savedGSheetUrl;
+      mySpreadsheet = savedGSheetUrl;
     }
     if(cardData){
       getValues = "select B,E,F,G WHERE D = '" + cardData.url + "'";
