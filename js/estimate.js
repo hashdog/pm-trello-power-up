@@ -4,11 +4,11 @@ var t = TrelloPowerUp.iframe();
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
-  var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/17EwNIgGf9YqVUgl0WQftCJybGy2cYlKk7PKeJi0T3qU/edit#gid=0'
+  var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
 
   $('#switch-hitters').sheetrock({
     url: mySpreadsheet,
-    query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
+    query: "select A,B,C,D",
     fetchSize: 10
   });
 
