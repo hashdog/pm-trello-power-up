@@ -4,7 +4,7 @@ var t = TrelloPowerUp.iframe();
 
 var mySpreadsheet = '';
 var getValues = '';
-var message = 'Please configure a google sheet on Hashdog setting power up. Please permit view the spreadsheet to users with the url.';
+var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the spreadsheet to users with the url.';
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -19,7 +19,7 @@ t.render(function(){
       mySpreadsheet = savedGSheetUrl;
     }
     if(cardData){
-      getValues = "select B,E,F,G WHERE D = '" + cardData.url + "'";
+      getValues = "select E,C,D,G WHERE F = '" + cardData.url + "'";
     }
   })
   .then(function(){
