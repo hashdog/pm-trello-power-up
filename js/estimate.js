@@ -8,7 +8,6 @@ var message = 'Please configure a google sheet on Hashdog setting power up. Ensu
 
 // this function we be called once on initial load
 // and then called each time something changes
-// var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
 t.render(function(){
   return Promise.all([
     t.get('board', 'shared', 'sheet'),
