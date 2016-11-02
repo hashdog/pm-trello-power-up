@@ -11,9 +11,8 @@ t.render(function(){
     query: "select A,B,C,D",
     fetchSize: 10,
     callback: function (error, options, response) {
-        console.log(error, options, response);
-        if (error) { $('#estimate-message').text(error); }
-      }
+      console.log(error, options, response);
+      if (error) { $('#estimate-message').text(error); }
     }
   });
 
