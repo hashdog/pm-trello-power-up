@@ -38,7 +38,7 @@ t.render(function(){
     "&entry.1600294234=" + cardUrl;
 
     if (mySpreadsheet) {
-      getValues = "select B,F,G,E WHERE D = '" + cardData.url + "'";
+      getValues = "select B,E,D WHERE C = '" + cardUrl + "'";
 
       $('#switch-hitters').sheetrock({
         url: mySpreadsheet,
