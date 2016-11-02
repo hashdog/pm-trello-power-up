@@ -7,27 +7,33 @@ var getValues = '';
 
 // this function we be called once on initial load
 // and then called each time something changes
+// var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
 t.render(function(){
   return Promise.all([
+    t.get('board', 'shared', 'sheet'),
     t.card('url')
   ])
-  .spread(function(cardData){
+  .spread(function(savedGSheetUrl, cardData){
+    if(savedGSheetUrl){
+      mySpreadsheet.value = savedGSheetUrl;
+    }
     if(cardData){
-      mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568';
       getValues = "select B,E,F,G WHERE D = '" + cardData.url + "'";
     }
   })
   .then(function(){
-    $('#switch-hitters').sheetrock({
-      url: mySpreadsheet,
-      query: getValues,
-      callback: function (error, options, response) {
-        var message = 'Please permit view the spreadsheet to users with the url.'
-        if (error) { $('#estimate-message').text(message); }
-      }
-    });
+    if (mySpreadsheet) {
+      $('#switch-hitters').sheetrock({
+        url: mySpreadsheet,
+        query: getValues,
+        callback: function (error, options, response) {
+          if (error) { $('#estimate-message').text(error); }
+        }
+      });
+    } else {
+      $('#estimate-message').text('Please configure a google sheet on Hashdog setting power up');
+    }
   })
-
 });
 
 // close overlay if user clicks outside our content
