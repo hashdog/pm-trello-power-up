@@ -1,18 +1,21 @@
-console.log('estimate.js');
-// var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
-var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/17EwNIgGf9YqVUgl0WQftCJybGy2cYlKk7PKeJi0T3qU/edit#gid=0'
+/* global TrelloPowerUp */
 
-var myCallback = function (error, options, response) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Data: ", response.data);
-    console.log("HTML: ", response.html);
+// this function we be called once on initial load
+// and then called each time something changes
+t.render(function(){
+  console.log('estimate.js');
+});
+
+// close overlay if user clicks outside our content
+document.addEventListener('click', function(e) {
+  if(e.target.tagName == 'BODY') {
+    t.closeOverlay().done();
   }
-};
+});
 
-$('#switch-hitters').sheetrock({
-  url: mySpreadsheet,
-  query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
-  fetchSize: 10
+// close overlay if user presses escape key
+document.addEventListener('keyup', function(e) {
+  if(e.keyCode == 27) {
+    t.closeOverlay().done();
+  }
 });
