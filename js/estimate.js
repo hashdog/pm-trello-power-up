@@ -27,7 +27,7 @@ t.render(function(){
         url: mySpreadsheet,
         query: getValues,
         callback: function (error, options, response) {
-          if (error) { $('#estimate-message').text(error); }
+          if (error) { $('#estimate-message').text(message); }
         }
       });
     } else {
