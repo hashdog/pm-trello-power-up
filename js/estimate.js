@@ -18,7 +18,7 @@ t.render(function(){
       mySpreadsheet = savedGSheetUrl;
     }
     if(cardData){
-      getValues = "select E,C,D,G WHERE F = '" + cardData.url + "'";
+      getValues = "select B,F,G,E WHERE D = '" + cardData.url + "'";
     }
   })
   .then(function(){
