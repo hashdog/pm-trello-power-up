@@ -1,4 +1,5 @@
 /* global TrelloPowerUp */
+var t = TrelloPowerUp.iframe();
 
 // this function we be called once on initial load
 // and then called each time something changes
