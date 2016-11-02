@@ -21,7 +21,6 @@ t.render(function(){
     $('#switch-hitters').sheetrock({
       url: mySpreadsheet,
       query: "select B,E,F,G WHERE D = " + cardUrl,
-      fetchSize: 10,
       callback: function (error, options, response) {
         var message = 'Please permit view the spreadsheet to users with the url.'
         if (error) { $('#estimate-message').text(message); }
