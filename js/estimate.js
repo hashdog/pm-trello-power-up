@@ -9,7 +9,7 @@ var cardUrl = '';
 // and then called each time something changes
 t.render(function(){
   return Promise.all([
-    t.card('name', 'url')
+    t.card('url')
   ])
   .spread(function(cardData){
     if(cardData){
