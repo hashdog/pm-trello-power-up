@@ -3,15 +3,15 @@
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
-var gETimeFormUrl  = document.getElementById('google-estimatedtime-form-url');
-var gTTimeFormUrl  = document.getElementById('google-trackedtime-form-url');
+var gETimeFormUrl  = document.getElementById('google-estimatetime-form-url');
+var gTTimeFormUrl  = document.getElementById('google-tracktime-form-url');
 var gSheetUrl = document.getElementById('google-sheet-url');
 var userEmail = document.getElementById('user-email');
 
 t.render(function(){
   return Promise.all([
-    t.get('board', 'shared', 'trackedtimeurl'),
-    t.get('board', 'shared', 'estimatedtimeurl'),
+    t.get('board', 'shared', 'tracktimeurl'),
+    t.get('board', 'shared', 'estimatetimeurl'),
     t.get('board', 'shared', 'sheet'),
     t.get('organization', 'private', 'email')
   ])
@@ -36,9 +36,9 @@ t.render(function(){
 });
 
 document.getElementById('save').addEventListener('click', function(){
-  return t.set('board', 'shared', 'trackedtimeurl', gTTimeFormUrl.value)
+  return t.set('board', 'shared', 'tracktimeurl', gTTimeFormUrl.value)
   .then(function(){
-    return t.set('board', 'shared', 'estimatedtimeurl', gETimeFormUrl.value);
+    return t.set('board', 'shared', 'estimatetimeurl', gETimeFormUrl.value);
   })
   .then(function(){
     return t.set('board', 'shared', 'sheet', gSheetUrl.value);

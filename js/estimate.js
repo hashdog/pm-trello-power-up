@@ -13,7 +13,7 @@ var message = 'Please configure a google sheet on Hashdog setting power up. Ensu
 // and then called each time something changes
 t.render(function(){
   return Promise.all([
-    t.get('board', 'shared', 'estimatedtimeurl'),
+    t.get('board', 'shared', 'estimatetimeurl'),
     t.get('organization', 'private', 'email'),
     t.get('board', 'shared', 'sheet'),
     t.card('url')

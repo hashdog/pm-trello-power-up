@@ -11,7 +11,7 @@ var userEmail = '';
 // and then called each time something changes
 t.render(function(){
   return Promise.all([
-    t.get('board', 'shared', 'trackedtimeurl'),
+    t.get('board', 'shared', 'tracktimeurl'),
     t.get('organization', 'private', 'email'),
     t.card('name', 'url')
   ])
