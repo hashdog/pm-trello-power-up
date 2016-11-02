@@ -9,7 +9,12 @@ t.render(function(){
   $('#switch-hitters').sheetrock({
     url: mySpreadsheet,
     query: "select A,B,C,D",
-    fetchSize: 10
+    fetchSize: 10,
+    callback: function (error, options, response) {
+        console.log(error, options, response);
+        if (error) { $('#estimate-message').text(error); }
+      }
+    }
   });
 
 });
