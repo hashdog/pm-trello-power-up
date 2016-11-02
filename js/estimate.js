@@ -4,25 +4,42 @@ var t = TrelloPowerUp.iframe();
 
 var mySpreadsheet = '';
 var getValues = '';
+var gFormUrl = '';
+var cardUrl = '';
+var userEmail = '';
 var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the spreadsheet to users with the url.';
 
 // this function we be called once on initial load
 // and then called each time something changes
 t.render(function(){
   return Promise.all([
+    t.get('board', 'shared', 'estimatedtimeurl'),
+    t.get('organization', 'private', 'email'),
     t.get('board', 'shared', 'sheet'),
     t.card('url')
   ])
-  .spread(function(savedGSheetUrl, cardData){
+  .spread(function(savedGFormUrl, savedUserEmail, savedGSheetUrl, cardData){
     if(savedGSheetUrl){
       mySpreadsheet = savedGSheetUrl;
     }
     if(cardData){
-      getValues = "select B,F,G,E WHERE D = '" + cardData.url + "'";
+      cardUrl = cardData.url;
+    }
+    if(savedUserEmail){
+      userEmail = savedUserEmail;
+    } else {
+      document.getElementById('estimate-message')
+      .textContent = 'Please add your personal email on settings';
     }
   })
   .then(function(){
+    document.getElementsByTagName('iframe')[0].src = gFormUrl +
+    "&entry.33315152=" + userEmail +
+    "&entry.1600294234=" + cardUrl;
+
     if (mySpreadsheet) {
+      getValues = "select B,F,G,E WHERE D = '" + cardData.url + "'";
+
       $('#switch-hitters').sheetrock({
         url: mySpreadsheet,
         query: getValues,
