@@ -38,8 +38,8 @@ t.render(function(){
     day = ("0" + d.getDate()).slice(-2);
     month = ("0" + (d.getMonth() + 1)).slice(-2);
     year = d.getFullYear();
-    document.getElementsByTagName('iframe')[0].src = gFormUrl +
-    "?embedded=true&entry.995291397=" + cardName +
+    document.getElementsByTagName('iframe')[0].src = gFormUrl + "?embedded=true" +
+    "&entry.995291397=" + cardName +
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl +
     "&entry.588722511=" + year+'-'+month+'-'+day;

@@ -33,7 +33,7 @@ t.render(function(){
     }
   })
   .then(function(){
-    document.getElementsByTagName('iframe')[0].src = gFormUrl +
+    document.getElementsByTagName('iframe')[0].src = gFormUrl + "?embedded=true" +
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
 
