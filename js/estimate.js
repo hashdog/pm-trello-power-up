@@ -14,7 +14,7 @@ t.render(function(){
   .spread(function(cardData){
     if(cardData){
       mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568';
-      getValues = "select B,E,F,G WHERE D = " + cardData.url;
+      getValues = "select B,E,F,G WHERE D = '" + cardData.url + "'";
     }
   })
   .then(function(){
