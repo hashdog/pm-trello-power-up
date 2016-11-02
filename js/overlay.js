@@ -4,7 +4,7 @@ var t = TrelloPowerUp.iframe();
 
 var gFormUrl = '';
 var cardName = '';
-var cardShortLink = '';
+var cardUrl = '';
 var userEmail = '';
 
 // this function we be called once on initial load
