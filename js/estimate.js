@@ -19,6 +19,9 @@ t.render(function(){
     t.card('url')
   ])
   .spread(function(savedGFormUrl, savedUserEmail, savedGSheetUrl, cardData){
+    if(savedGFormUrl){
+      gFormUrl = savedGFormUrl;
+    }
     if(savedGSheetUrl){
       mySpreadsheet = savedGSheetUrl;
     }
