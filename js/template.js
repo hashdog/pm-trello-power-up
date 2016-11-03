@@ -68,8 +68,8 @@ var calculateTrackedHours = function() {
   var userEmail = '';
 
   return Promise.all([
-    t.get('board', 'shared', 'estimatetimeurl')
-    t.get('organization', 'private', 'email'),
+    t.get('board', 'shared', 'estimatetimeurl'),
+    t.get('organization', 'private', 'email')
   ])
   .spread(function(savedEstimationFormUrl, savedUserEmail){
     if(savedEstimationFormUrl){
