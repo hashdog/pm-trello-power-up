@@ -31,7 +31,7 @@ TrelloPowerUp.initialize({
             text: calculateEstimation(),
             icon: './images/clock-estimation.svg', // for card front badges only
             color: 'red',
-            refresh: 5
+            refresh: 10
           }
         }
       },
@@ -42,7 +42,7 @@ TrelloPowerUp.initialize({
             text: calculateTrackedHours(),
             icon: './images/clock-track.svg', // for card front badges only
             color: 'white',
-            refresh: 5
+            refresh: 10
           }
         }
       }
@@ -82,19 +82,21 @@ var calculateTrackedHours = function() {
 
   console.log('gEstimationFormUrl: ', gEstimationFormUrl);
   console.log('userEmail: ', userEmail);
+  getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+  console.log('Results: ', getValues);
 
   // console.log('Warning: Please add your personal email on settings');
-  if (gEstimationFormUrl && userEmail) {
-    getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+  // if (gEstimationFormUrl && userEmail) {
+  //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
 
-    console.log('Results: ', getValues);
+  //   console.log('Results: ', getValues);
 
-    return $('#switch-hitters').sheetrock({
-      url: gEstimationFormUrl,
-      query: getValues,
-      callback: function (error, options, response) {
-        if (error) { console.log('Error :', message); }
-      }
-    }).text();
-  }
+  //   $('#switch-hitters').sheetrock({
+  //     url: gEstimationFormUrl,
+  //     query: getValues,
+  //     callback: function (error, options, response) {
+  //       if (error) { console.log('Error :', message); }
+  //     }
+  //   }).text();
+  // }
 }
