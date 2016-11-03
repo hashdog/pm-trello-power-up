@@ -28,7 +28,7 @@ TrelloPowerUp.initialize({
         dynamic: function(){
           return {
             title: 'Average estimation', // for detail badges only
-            text: estimationCallback(t, context),
+            text: calculateEstimation(),
             icon: './images/clock-estimation.svg', // for card front badges only
             color: 'red',
             refresh: 5
@@ -57,8 +57,6 @@ TrelloPowerUp.initialize({
   }
 });
 
-var estimationCallback = function(t, context) {
-  console.log(t);
-  console.log(context);
+var calculateEstimation = function() {
   return '7'
 }
