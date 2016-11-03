@@ -68,36 +68,38 @@ var calculateTrackedHours = function() {
   var gEstimationSheetUrl = '';
   var userEmail = '';
 
-  Promise.all([
-    t.get('board', 'shared', 'estimatetimeurl'),
-    t.get('organization', 'private', 'email')
-  ])
-  .spread(function(savedEstimationSheetUrl, savedUserEmail){
-    if(savedEstimationSheetUrl){
-      gEstimationSheetUrl = savedEstimationSheetUrl;
-    }
-    if(savedUserEmail){
-      userEmail = savedUserEmail;
-    }
-  })
+  t.render(function(){
+    return Promise.all([
+      t.get('board', 'shared', 'estimatetimeurl'),
+      t.get('organization', 'private', 'email')
+    ])
+    .spread(function(savedEstimationSheetUrl, savedUserEmail){
+      if(savedEstimationSheetUrl){
+        gEstimationSheetUrl = savedEstimationSheetUrl;
+      }
+      if(savedUserEmail){
+        userEmail = savedUserEmail;
+      }
+    })
 
-  console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-  console.log('userEmail: ', userEmail);
-  // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
-  // console.log('Results: ', getValues);
+    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+    console.log('userEmail: ', userEmail);
+    // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+    // console.log('Results: ', getValues);
 
-  // console.log('Warning: Please add your personal email on settings');
-  // if (gEstimationSheetUrl && userEmail) {
-  //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+    // console.log('Warning: Please add your personal email on settings');
+    // if (gEstimationSheetUrl && userEmail) {
+    //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
 
-  //   console.log('Results: ', getValues);
+    //   console.log('Results: ', getValues);
 
-  //   $('#switch-hitters').sheetrock({
-  //     url: gEstimationSheetUrl,
-  //     query: getValues,
-  //     callback: function (error, options, response) {
-  //       if (error) { console.log('Error :', message); }
-  //     }
-  //   }).text();
-  // }
+    //   $('#switch-hitters').sheetrock({
+    //     url: gEstimationSheetUrl,
+    //     query: getValues,
+    //     callback: function (error, options, response) {
+    //       if (error) { console.log('Error :', message); }
+    //     }
+    //   }).text();
+    // }
+  });
 }
