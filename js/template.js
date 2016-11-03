@@ -25,10 +25,39 @@ TrelloPowerUp.initialize({
   'card-badges': function(t, card) {
     return [
       {
-        icon: './images/icon-gray.svg',
-        text: '0'
+        dynamic: function(){
+          return {
+            title: 'Average estimation', // for detail badges only
+            text: '5',
+            icon: './images/clock-estimation.svg', // for card front badges only
+            color: 'red',
+            refresh: 5
+          }
+        }
+      },
+      {
+        dynamic: function(){
+          return {
+            title: 'Time tracked', // for detail badges only
+            text: '1.5',
+            icon: './images/clock-track.svg', // for card front badges only
+            color: 'white',
+            refresh: 5
+          }
+        }
       }
     ];
+
+    // return [
+    //   {
+    //     icon: './images/clock-estimation.svg',
+    //     text: '0'
+    //   },
+    //   {
+    //     icon: './images/clock-track.svg',
+    //     text: '0'
+    //   }
+    // ];
   },
   'show-settings': function(t, options){
     return t.popup({
