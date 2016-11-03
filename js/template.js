@@ -62,38 +62,38 @@ var calculateEstimation = function() {
 }
 
 var calculateTrackedHours = function() {
-  return '3'
-  // var Promise = TrelloPowerUp.Promise;
-  // var t = TrelloPowerUp.iframe();
-  // var gEstimationFormUrl = '';
-  // var userEmail = '';
+  // return '3'
+  var Promise = TrelloPowerUp.Promise;
+  var t = TrelloPowerUp.iframe();
+  var gEstimationSheetUrl = '';
+  var userEmail = '';
 
-  // return Promise.all([
-  //   t.get('board', 'shared', 'estimatetimeurl'),
-  //   t.get('organization', 'private', 'email')
-  // ])
-  // .spread(function(savedEstimationFormUrl, savedUserEmail){
-  //   if(savedEstimationFormUrl){
-  //     gEstimationFormUrl = savedEstimationFormUrl;
-  //   }
-  //   if(savedUserEmail){
-  //     userEmail = savedUserEmail;
-  //   }
-  // })
+  Promise.all([
+    t.get('board', 'shared', 'estimatetimeurl'),
+    t.get('organization', 'private', 'email')
+  ])
+  .spread(function(savedEstimationSheetUrl, savedUserEmail){
+    if(savedEstimationSheetUrl){
+      gEstimationSheetUrl = savedEstimationSheetUrl;
+    }
+    if(savedUserEmail){
+      userEmail = savedUserEmail;
+    }
+  })
 
-  // console.log('gEstimationFormUrl: ', gEstimationFormUrl);
-  // console.log('userEmail: ', userEmail);
+  console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+  console.log('userEmail: ', userEmail);
   // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
   // console.log('Results: ', getValues);
 
   // console.log('Warning: Please add your personal email on settings');
-  // if (gEstimationFormUrl && userEmail) {
+  // if (gEstimationSheetUrl && userEmail) {
   //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
 
   //   console.log('Results: ', getValues);
 
   //   $('#switch-hitters').sheetrock({
-  //     url: gEstimationFormUrl,
+  //     url: gEstimationSheetUrl,
   //     query: getValues,
   //     callback: function (error, options, response) {
   //       if (error) { console.log('Error :', message); }

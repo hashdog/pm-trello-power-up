@@ -1,5 +1,8 @@
 <html>
   <head>
+    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
+    <link rel="stylesheet" href="./css/overlay.css">
+    <script src="https://trello.com/power-ups/power-up.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.1/dist/sheetrock.min.js"></script>
   </head>
@@ -10,12 +13,35 @@
       <table id="switch-hitters" class="table table-condensed table-striped"></table>
     </div>
 <script>
-    var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1raLEpgZyX0LHszBYtkR25N4t4EGbiYF3Os1fpRu5DDA/edit#gid=38447568'
+  var Promise = TrelloPowerUp.Promise;
+  var t = TrelloPowerUp.iframe();
+  var gEstimationSheetUrl = '';
+  var userEmail = '';
 
-    $('#switch-hitters').sheetrock({
-      url: mySpreadsheet,
-      query: "select B,E,F,G WHERE D = " + "'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'"
+  t.render(function(){
+    return Promise.all([
+      t.get('board', 'shared', 'estimatetimeurl'),
+      t.get('organization', 'private', 'email')
+    ])
+    .spread(function(savedEstimationSheetUrl, savedUserEmail){
+      if(savedEstimationSheetUrl){
+        gEstimationSheetUrl = savedEstimationSheetUrl;
+      }
+      if(savedUserEmail){
+        userEmail = savedUserEmail;
+      }
     });
+  });
+
+  console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+  console.log('userEmail: ', userEmail);
+
+  var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845'
+
+  $('#switch-hitters').sheetrock({
+    url: mySpreadsheet,
+    query: "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'"
+  });
 </script>
 
 </body>
