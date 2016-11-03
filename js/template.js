@@ -28,7 +28,7 @@ TrelloPowerUp.initialize({
         dynamic: function(){
           return {
             title: 'Average estimation', // for detail badges only
-            text: '5',
+            text: estimationCallback(t, context),
             icon: './images/clock-estimation.svg', // for card front badges only
             color: 'red',
             refresh: 5
@@ -47,17 +47,6 @@ TrelloPowerUp.initialize({
         }
       }
     ];
-
-    // return [
-    //   {
-    //     icon: './images/clock-estimation.svg',
-    //     text: '0'
-    //   },
-    //   {
-    //     icon: './images/clock-track.svg',
-    //     text: '0'
-    //   }
-    // ];
   },
   'show-settings': function(t, options){
     return t.popup({
@@ -67,3 +56,9 @@ TrelloPowerUp.initialize({
     });
   }
 });
+
+var estimationCallback = function(t, context) {
+  console.log(t);
+  console.log(context);
+  return '7'
+}
