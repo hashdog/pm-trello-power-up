@@ -39,7 +39,7 @@ TrelloPowerUp.initialize({
         dynamic: function(){
           return {
             title: 'Time tracked', // for detail badges only
-            text: '1.5',
+            text: calculateTrackedHours(),
             icon: './images/clock-track.svg', // for card front badges only
             color: 'white',
             refresh: 5
@@ -58,5 +58,43 @@ TrelloPowerUp.initialize({
 });
 
 var calculateEstimation = function() {
-  return '7'
+  return '6'
+}
+
+var calculateTrackedHours = function() {
+  var Promise = TrelloPowerUp.Promise;
+  var t = TrelloPowerUp.iframe();
+  var gEstimationFormUrl = '';
+  var userEmail = '';
+
+  return Promise.all([
+    t.get('board', 'shared', 'estimatetimeurl')
+    t.get('organization', 'private', 'email'),
+  ])
+  .spread(function(savedEstimationFormUrl, savedUserEmail){
+    if(savedEstimationFormUrl){
+      gEstimationFormUrl = savedEstimationFormUrl;
+    }
+    if(savedUserEmail){
+      userEmail = savedUserEmail;
+    }
+  })
+
+  console.log('gEstimationFormUrl: ', gEstimationFormUrl);
+  console.log('userEmail: ', userEmail);
+
+  // console.log('Warning: Please add your personal email on settings');
+  if (gEstimationFormUrl && userEmail) {
+    getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+
+    console.log('Results: ', getValues);
+
+    return $('#switch-hitters').sheetrock({
+      url: gEstimationFormUrl,
+      query: getValues,
+      callback: function (error, options, response) {
+        if (error) { console.log('Error :', message); }
+      }
+    }).text();
+  }
 }

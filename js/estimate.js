@@ -2,12 +2,12 @@
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
-var mySpreadsheet = '';
+var spreadSheetUrl = '';
 var getValues = '';
 var gFormUrl = '';
 var cardUrl = '';
 var userEmail = '';
-var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the spreadsheet to users with the url.';
+var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the spreadsheetUrl to users with the url.';
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -23,7 +23,7 @@ t.render(function(){
       gFormUrl = savedGFormUrl;
     }
     if(savedGSheetUrl){
-      mySpreadsheet = savedGSheetUrl;
+      spreadSheetUrl = savedGSheetUrl;
     }
     if(cardData){
       cardUrl = cardData.url;
@@ -40,11 +40,11 @@ t.render(function(){
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
 
-    if (mySpreadsheet) {
+    if (spreadSheetUrl) {
       getValues = "select B,E,D WHERE C = '" + cardUrl + "'";
 
       $('#switch-hitters').sheetrock({
-        url: mySpreadsheet,
+        url: spreadSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
           if (error) { $('#estimate-message').text(message); }
