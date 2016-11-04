@@ -78,26 +78,42 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  return t.get('organization', 'private', 'email')
-  .then(function(userEmail){
+  return [
+    t.get('board', 'shared', 'estimatetimeurl'),
+    t.get('organization', 'private', 'email')
+  ]
+  .then(function(savedEstimationSheetUrl, userEmail){
+    var gEstimationSheetUrl = "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'";
     var userEmail = userEmail;
 
-    return [{
-      dynamic: function(){
-        return {
-          title: 'Detail Estimation',
-          text: userEmail,
-          icon: './images/clock-estimation.svg', // for card front badges only
-          color: 'red',
-          refresh: 15
+    if (gEstimationSheetUrl && userEmail) {
+      getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+
+      var timeTracked = $('#switch-hitters').sheetrock({
+        url: gEstimationSheetUrl,
+        query: getValues,
+        callback: function (error, options, response) {
+          if (error) { console.log('Error :', message); }
         }
+      }).find('td').text();
+    }
+
+    console.log("Time: ", timeTracked);
+
+    return [
+      {
+        title: 'Time Tracked',
+        text: timeTracked,
+        icon: './images/clock-track.svg', // for card front badges only
+        color: 'red',
+        refresh: 15
       }
-    }]
+    ]
 
     // if(lowercaseName.indexOf('static') > -1){
     //   // return an array of badge objects
     //   return [{
-    //     title: 'Detail Badge', // for detail badges only
+    //     title: 'Global Estimation', // for detail badges only
     //     text: 'Static',
     //     icon: icon, // for card front badges only
     //     color: badgeColor
