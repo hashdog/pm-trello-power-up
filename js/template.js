@@ -55,7 +55,6 @@ var calculateEstimation = function() {
     ])
     .spread(function(estimationTime){
       value = estimationTime ? estimationTime : '0';
-      }
     });
   return value;
 }
