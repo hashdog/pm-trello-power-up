@@ -26,13 +26,13 @@ TrelloPowerUp.initialize({
     return [
       {
         title: 'Average estimation', // for detail badges only
-        text: calculateEstimation(),
+        text: '0',//calculateEstimation(),
         icon: './images/clock-estimation.svg', // for card front badges only
         color: 'red'
       },
       {
         title: 'Time tracked', // for detail badges only
-        text: calculateTrackedHours(),
+        text: '0',//calculateTrackedHours(),
         icon: './images/clock-track.svg', // for card front badges only
         color: 'white'
       }
