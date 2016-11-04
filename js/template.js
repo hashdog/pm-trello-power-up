@@ -82,11 +82,11 @@ var getBadges = function(t){
 
   var Promise = TrelloPowerUp.Promise;
   return t.get('board', 'shared', 'estimatetimeurl')
-  .then(function(function(savedEstimationSheetUrl) {
+  .then(function(savedEstimationSheetUrl) {
     var gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     return t.get('organization', 'private', 'email');
   })
-  .then(function(function(userEmail) {
+  .then(function(userEmail) {
     var userEmail = userEmail;
 
     if (gEstimationSheetUrl && userEmail) {
