@@ -84,7 +84,7 @@ var getBadges = function(t){
     t.get('organization', 'private', 'email')
   ])
   .then(function(savedEstimationSheetUrl, userEmail){
-    var gEstimationSheetUrl = "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'";
+    var gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     var userEmail = userEmail;
 
     if (gEstimationSheetUrl && userEmail) {
