@@ -78,22 +78,21 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 5);
+  console.log('Compilation: ', 6);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
 
   return t.get('board', 'shared', 'estimatetimeurl')
-  .then(function() {
-    // gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
+  .then(function(savedEstimationSheetUrl) {
+    gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     return t.get('organization', 'private', 'email');
   })
-  .then(function(savedEstimationSheetUrl, userEmail) {
-    var urlSheet = savedEstimationSheetUrl;
+  .then(function(userEmail) {
     gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     userEmail = userEmail;
 
-    console.log('gEstimationSheetUrl: ', urlSheet);
+    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
     console.log('userEmail: ', userEmail);
 
     if (gEstimationSheetUrl && userEmail) {
