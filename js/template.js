@@ -23,20 +23,7 @@ TrelloPowerUp.initialize({
     }];
   },
   'card-badges': function(t, card) {
-    return [
-      {
-        title: 'Average estimation', // for detail badges only
-        text: '0',//calculateEstimation(),
-        icon: './images/clock-estimation.svg', // for card front badges only
-        color: 'red'
-      },
-      {
-        title: 'Time tracked', // for detail badges only
-        text: '0',//calculateTrackedHours(),
-        icon: './images/clock-track.svg', // for card front badges only
-        color: 'white'
-      }
-    ];
+    return getBadges(t);
   },
   'show-settings': function(t, options){
     return t.popup({
@@ -47,57 +34,76 @@ TrelloPowerUp.initialize({
   }
 });
 
-var calculateEstimation = function() {
-  var Promise = TrelloPowerUp.Promise;
-  var value = '';
-  Promise.all([
-      t.get('card', 'shared', 'estimatetime')
-    ])
-    .spread(function(estimationTime){
-      value = estimationTime ? estimationTime : '0';
-    });
-  return value;
-}
+// var calculateTrackedHours = function() {
+//   // return '3'
+//   // var Promise = TrelloPowerUp.Promise;
+//   // var t = TrelloPowerUp.iframe();
+//   var gEstimationSheetUrl = '';
+//   var userEmail = '';
 
-var calculateTrackedHours = function() {
-  // return '3'
-  var Promise = TrelloPowerUp.Promise;
-  var t = TrelloPowerUp.iframe();
-  var gEstimationSheetUrl = '';
-  var userEmail = '';
+//   t.render(function(){
+//     return Promise.all([
+//       t.get('board', 'shared', 'estimatetimeurl'),
+//       t.get('organization', 'private', 'email')
+//     ])
+//     .spread(function(savedEstimationSheetUrl, savedUserEmail){
+//       if(savedEstimationSheetUrl){
+//         gEstimationSheetUrl = savedEstimationSheetUrl;
+//       }
+//       if(savedUserEmail){
+//         userEmail = savedUserEmail;
+//       }
+//     })
 
-  t.render(function(){
-    return Promise.all([
-      t.get('board', 'shared', 'estimatetimeurl'),
-      t.get('organization', 'private', 'email')
-    ])
-    .spread(function(savedEstimationSheetUrl, savedUserEmail){
-      if(savedEstimationSheetUrl){
-        gEstimationSheetUrl = savedEstimationSheetUrl;
+//     console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+//     console.log('userEmail: ', userEmail);
+//     // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+//     // console.log('Results: ', getValues);
+
+//     // console.log('Warning: Please add your personal email on settings');
+//     // if (gEstimationSheetUrl && userEmail) {
+//     //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+
+//     //   console.log('Results: ', getValues);
+
+//     //   $('#switch-hitters').sheetrock({
+//     //     url: gEstimationSheetUrl,
+//     //     query: getValues,
+//     //     callback: function (error, options, response) {
+//     //       if (error) { console.log('Error :', message); }
+//     //     }
+//     //   }).text();
+//     // }
+//   });
+// };
+
+var getBadges = function(t){
+  return t.get('organization', 'private', 'email')
+  .then(function(userEmail){
+    var userEmail = userEmail;
+
+    return [{
+      dynamic: function(){
+        return {
+          title: 'Detail Estimation',
+          text: userEmail,
+          icon: './images/clock-estimation.svg', // for card front badges only
+          color: 'red',
+          refresh: 15
+        }
       }
-      if(savedUserEmail){
-        userEmail = savedUserEmail;
-      }
-    })
+    }]
 
-    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-    console.log('userEmail: ', userEmail);
-    // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
-    // console.log('Results: ', getValues);
-
-    // console.log('Warning: Please add your personal email on settings');
-    // if (gEstimationSheetUrl && userEmail) {
-    //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
-
-    //   console.log('Results: ', getValues);
-
-    //   $('#switch-hitters').sheetrock({
-    //     url: gEstimationSheetUrl,
-    //     query: getValues,
-    //     callback: function (error, options, response) {
-    //       if (error) { console.log('Error :', message); }
-    //     }
-    //   }).text();
+    // if(lowercaseName.indexOf('static') > -1){
+    //   // return an array of badge objects
+    //   return [{
+    //     title: 'Detail Badge', // for detail badges only
+    //     text: 'Static',
+    //     icon: icon, // for card front badges only
+    //     color: badgeColor
+    //   }];
+    // } else {
+    //   return [];
     // }
-  });
-}
+  })
+};
