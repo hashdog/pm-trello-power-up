@@ -58,7 +58,16 @@ TrelloPowerUp.initialize({
 });
 
 var calculateEstimation = function() {
-  return '6'
+  var Promise = TrelloPowerUp.Promise;
+  var value = '';
+  Promise.all([
+      t.get('card', 'shared', 'estimatetime')
+    ])
+    .spread(function(estimationTime){
+      value = estimationTime ? estimationTime : '0';
+      }
+    });
+  return value;
 }
 
 var calculateTrackedHours = function() {

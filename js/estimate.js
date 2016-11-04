@@ -39,7 +39,7 @@ t.render(function(){
     document.getElementsByTagName('iframe')[0].src = gFormUrl + "?embedded=true" +
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
-
+    t.set('card', 'shared', 'estimatetime', '10');
     if (spreadSheetUrl) {
       getValues = "select B,E,D WHERE C = '" + cardUrl + "'";
 
