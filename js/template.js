@@ -78,7 +78,7 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 11);
+  console.log('Compilation: ', 12);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -108,7 +108,7 @@ var getBadges = function(t){
             timeTracked = $(response.html).find('td').text();
             console.log(response.html);
 
-            $('a[href=”' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
+            $('a[href="' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
             .find('.plugin-color-red .badge-text')
             .text($(response.html).find('td').text());
 
