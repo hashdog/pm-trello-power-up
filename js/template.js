@@ -25,15 +25,10 @@ TrelloPowerUp.initialize({
   'card-badges': function(t, card) {
     return [
       {
-        dynamic: function(){
-          return {
-            title: 'Average estimation', // for detail badges only
-            text: calculateEstimation(),
-            icon: './images/clock-estimation.svg', // for card front badges only
-            color: 'red',
-            refresh: 10
-          }
-        }
+        title: 'Average estimation', // for detail badges only
+        text: calculateEstimation(),
+        icon: './images/clock-estimation.svg', // for card front badges only
+        color: 'red'
       },
       {
         dynamic: function(){
