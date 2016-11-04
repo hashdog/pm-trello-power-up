@@ -38,10 +38,20 @@
 
   var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845'
 
-  $('#switch-hitters').sheetrock({
+  var other = $('#switch-hitters').sheetrock({
     url: mySpreadsheet,
-    query: "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'"
+    query: "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'",
+    callback: function (error, options, response) {
+      if (!error) {
+        console.log(response.data);
+        console.log($(response.html).find('td').text());
+      } else {
+        console.log('Error :', message);
+      }
+    }
   });
+
+  console.log('resutl: ', other)
 </script>
 
 </body>
