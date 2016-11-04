@@ -78,7 +78,7 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 15);
+  console.log('Compilation: ', 16);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -115,7 +115,7 @@ var getBadges = function(t){
             badge.text(timeTracked);
 
           } else {
-            console.log('Error :', message);
+            console.log('Error :', error);
           }
         }
       }).find('td').text();
