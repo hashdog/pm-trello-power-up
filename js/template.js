@@ -78,16 +78,18 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 2);
+  console.log('Compilation: ', 3);
 
-  var Promise = TrelloPowerUp.Promise;
+  var gEstimationSheetUrl = '';
+  var userEmail = '';
+
   return t.get('board', 'shared', 'estimatetimeurl')
   .then(function(savedEstimationSheetUrl) {
-    var gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
+    gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     return t.get('organization', 'private', 'email');
   })
   .then(function(userEmail) {
-    var userEmail = userEmail;
+    userEmail = userEmail;
 
     if (gEstimationSheetUrl && userEmail) {
       getValues = "select sum(F) WHERE D = '" + userEmail + "'";
