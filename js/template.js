@@ -78,6 +78,8 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
+  console.log('Compilation: ', 1);
+
   var Promise = TrelloPowerUp.Promise;
   return Promise.all([
     t.get('board', 'shared', 'estimatetimeurl'),
@@ -89,6 +91,8 @@ var getBadges = function(t){
 
     if (gEstimationSheetUrl && userEmail) {
       getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+
+      console.log("Before get data");
 
       var timeTracked = $('#switch-hitters').sheetrock({
         url: gEstimationSheetUrl,
