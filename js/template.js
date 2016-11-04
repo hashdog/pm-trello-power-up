@@ -31,15 +31,10 @@ TrelloPowerUp.initialize({
         color: 'red'
       },
       {
-        dynamic: function(){
-          return {
-            title: 'Time tracked', // for detail badges only
-            text: calculateTrackedHours(),
-            icon: './images/clock-track.svg', // for card front badges only
-            color: 'white',
-            refresh: 10
-          }
-        }
+        title: 'Time tracked', // for detail badges only
+        text: calculateTrackedHours(),
+        icon: './images/clock-track.svg', // for card front badges only
+        color: 'white'
       }
     ];
   },
