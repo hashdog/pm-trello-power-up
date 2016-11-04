@@ -78,7 +78,7 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 3);
+  console.log('Compilation: ', 4);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -90,6 +90,9 @@ var getBadges = function(t){
   })
   .then(function(userEmail) {
     userEmail = userEmail;
+
+    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+    console.log('userEmail: ', userEmail);
 
     if (gEstimationSheetUrl && userEmail) {
       getValues = "select sum(F) WHERE D = '" + userEmail + "'";
