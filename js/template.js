@@ -78,7 +78,7 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 6);
+  console.log('Compilation: ', 9);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -89,14 +89,13 @@ var getBadges = function(t){
     return t.get('organization', 'private', 'email');
   })
   .then(function(userEmail) {
-    gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
     userEmail = userEmail;
 
     console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
     console.log('userEmail: ', userEmail);
 
     if (gEstimationSheetUrl && userEmail) {
-      getValues = "select sum(F) WHERE D = '" + userEmail + "'";
+      getValues = "select sum(F) WHERE B = '" + userEmail + "'";
 
       console.log("Before get data");
 
@@ -106,7 +105,8 @@ var getBadges = function(t){
         query: getValues,
         callback: function (error, options, response) {
           if (!error) {
-            console.log('response :', response);
+            console.log(response.data);
+            console.log(response.html);
           } else {
             console.log('Error :', message);
           }
@@ -120,7 +120,7 @@ var getBadges = function(t){
     return [
       {
         title: 'Time Tracked',
-        text: timeTracked,
+        text: other,
         icon: './images/clock-track.svg', // for card front badges only
         color: 'red',
         refresh: 15
