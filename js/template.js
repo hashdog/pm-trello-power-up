@@ -78,10 +78,11 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 13);
+  console.log('Compilation: ', 14);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
+  var timeTracked = '';
 
   return t.get('board', 'shared', 'estimatetimeurl')
   .then(function(savedEstimationSheetUrl) {
@@ -99,7 +100,6 @@ var getBadges = function(t){
 
       console.log("Before get data");
 
-      var timeTracked = '';
       var other = $('body').sheetrock({
         url: gEstimationSheetUrl,
         query: getValues,
@@ -126,7 +126,7 @@ var getBadges = function(t){
     return [
       {
         title: 'Time Tracked',
-        text: '0',
+        text: timeTracked,
         icon: './images/clock-track.svg', // for card front badges only
         color: 'red',
         refresh: 15
