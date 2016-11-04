@@ -33,25 +33,30 @@
     });
   });
 
-  console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-  console.log('userEmail: ', userEmail);
+  // console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+  // console.log('userEmail: ', userEmail);
 
   var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845'
 
-  var other = $('#switch-hitters').sheetrock({
+  $('#switch-hitters').sheetrock({
     url: mySpreadsheet,
     query: "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'",
     callback: function (error, options, response) {
       if (!error) {
-        console.log(response.data);
-        console.log($(response.html).find('td').text());
+        console.log('html', response.html);
+        console.log('callback: ', $(response.html).find('td').text());
+
+        $('a[href=”' + card_path + '"]').parent('.list-card-details')
+        .find('.plugin-color-red .badge-text')
+        .text($(response.html).find('td').text());
       } else {
         console.log('Error :', message);
       }
     }
   });
 
-  console.log('resutl: ', other)
+  console.log('resutl: ', other.find('td').text());
+
 </script>
 
 </body>

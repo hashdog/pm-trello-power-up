@@ -78,7 +78,7 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  console.log('Compilation: ', 10);
+  console.log('Compilation: ', 11);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -107,6 +107,11 @@ var getBadges = function(t){
           if (!error) {
             timeTracked = $(response.html).find('td').text();
             console.log(response.html);
+
+            $('a[href=”' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
+            .find('.plugin-color-red .badge-text')
+            .text($(response.html).find('td').text());
+
           } else {
             console.log('Error :', message);
           }
@@ -120,7 +125,7 @@ var getBadges = function(t){
     return [
       {
         title: 'Time Tracked',
-        text: other,
+        text: '0',
         icon: './images/clock-track.svg', // for card front badges only
         color: 'red',
         refresh: 15
