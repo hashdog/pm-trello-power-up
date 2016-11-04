@@ -78,10 +78,11 @@ TrelloPowerUp.initialize({
 // };
 
 var getBadges = function(t){
-  return [
+  var Promise = TrelloPowerUp.Promise;
+  return Promise.all([
     t.get('board', 'shared', 'estimatetimeurl'),
     t.get('organization', 'private', 'email')
-  ]
+  ])
   .then(function(savedEstimationSheetUrl, userEmail){
     var gEstimationSheetUrl = "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'";
     var userEmail = userEmail;
