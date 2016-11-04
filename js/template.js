@@ -26,7 +26,7 @@ TrelloPowerUp.initialize({
     return [
       {
         title: 'Average estimation', // for detail badges only
-        text: '0',//calculateEstimation(),
+        text: calculateEstimation(),
         icon: './images/clock-estimation.svg', // for card front badges only
         color: 'red'
       },
