@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 20);
+  console.log('Compilation: ', 22);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -48,10 +48,6 @@ var getBadges = function(t){
   })
   .then(function(userEmail) {
     userEmail = userEmail;
-
-    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-    console.log('userEmail: ', userEmail);
-
     if (gEstimationSheetUrl && userEmail) {
       getValues = "select sum(F) WHERE B = '" + userEmail + "'";
 
@@ -63,16 +59,14 @@ var getBadges = function(t){
         callback: function (error, options, response) {
           if (!error) {
             timeTracked = $(response.html).find('td').text();
-
-            console.log("Time: ", timeTracked);
             t.set('card', 'shared', 'trackedtime', timeTracked);
+            console.log("Time: ", timeTracked);
           } else {
             console.log('Error :', error);
           }
         }
-      }).find('td').text();
+      });
     }
-  }).then(function(){
     t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
       return [
         {
