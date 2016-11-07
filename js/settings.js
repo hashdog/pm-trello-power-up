@@ -14,7 +14,7 @@ t.render(function(){
     t.get('board', 'shared', 'tracktimeurl'),
     t.get('board', 'shared', 'estimatetimeurl'),
     t.get('board', 'shared', 'estimationsheet'),
-    t.get('card',  'shared', 'trakingsheet'),
+    t.get('board', 'shared', 'trakingsheet'),
     t.get('organization', 'private', 'email')
   ])
   .spread(function(savedGTTimeFormUrl, savedGETimeFormUrl, savedGEstimationSheetUrl, savedGTrackingSheetUrl, savedUserEmail){
@@ -49,7 +49,7 @@ document.getElementById('save').addEventListener('click', function(){
     return t.set('board', 'shared', 'estimationsheet', gEstimationSheetUrl.value);
   })
   .then(function(){
-    return t.set('card', 'shared', 'trakingsheet', gTrackingSheetUrl.value);
+    return t.set('board', 'shared', 'trakingsheet', gTrackingSheetUrl.value);
   })
   .then(function(){
     return t.set('organization', 'private', 'email', userEmail.value);

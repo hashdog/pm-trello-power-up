@@ -35,13 +35,13 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 25);
+  console.log('Compilation: ', 26);
 
   var gTrackingSheetUrl = '';
   var cardUrl = '';
   var timeTracked = '';
 
-  return t.get('board', 'shared', 'trakingsheet')
+  return t.get('board', 'shared', 'trakingsheet');
   .then(function(savedTrackingSheetUrl) {
     gTrackingSheetUrl = savedTrackingSheetUrl;
     return t.card('url');
