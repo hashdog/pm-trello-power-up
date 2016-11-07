@@ -35,27 +35,26 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 24);
+  console.log('Compilation: ', 25);
 
-  var gEstimationSheetUrl = '';
+  var gTrackingSheetUrl = '';
   var cardUrl = '';
   var timeTracked = '';
 
-  return t.get('board', 'shared', 'estimatetimeurl')
-  .then(function(savedEstimationSheetUrl) {
-    gEstimationSheetUrl = savedEstimationSheetUrl;
-    // return t.get('organization', 'private', 'email');
+  return t.get('board', 'shared', 'trakingsheet')
+  .then(function(savedTrackingSheetUrl) {
+    gTrackingSheetUrl = savedTrackingSheetUrl;
     return t.card('url');
   })
   .then(function(cardUrl) {
-    if (gEstimationSheetUrl && cardUrl) {
+    if (gTrackingSheetUrl && cardUrl) {
       getValues = "select sum(E) WHERE C = '" + cardUrl + "'";
 
-      console.log("gEstimationSheetUrl: ", gEstimationSheetUrl);
+      console.log("gTrackingSheetUrl: ", gTrackingSheetUrl);
       console.log("Before get data");
 
       $('body').sheetrock({
-        url: gEstimationSheetUrl,
+        url: gTrackingSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
           if (!error) {
