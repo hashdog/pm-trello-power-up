@@ -2,12 +2,12 @@
 var Promise = TrelloPowerUp.Promise;
 var t = TrelloPowerUp.iframe();
 
-var spreadSheetUrl = '';
+var estimationSheetUrl = '';
 var getValues = '';
 var gFormUrl = '';
 var cardUrl = '';
 var userEmail = '';
-var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the spreadsheetUrl to users with the url.';
+var message = 'Please configure a google sheet on Hashdog setting power up. Ensure permit view the estimationsheetUrl to users with the url.';
 
 // this function we be called once on initial load
 // and then called each time something changes
@@ -15,15 +15,15 @@ t.render(function(){
   return Promise.all([
     t.get('board', 'shared', 'estimatetimeurl'),
     t.get('organization', 'private', 'email'),
-    t.get('board', 'shared', 'sheet'),
+    t.get('board', 'shared', 'estimationsheet'),
     t.card('url')
   ])
-  .spread(function(savedGFormUrl, savedUserEmail, savedGSheetUrl, cardData){
+  .spread(function(savedGFormUrl, savedUserEmail, savedGEstimationSheetUrl, cardData){
     if(savedGFormUrl){
       gFormUrl = savedGFormUrl;
     }
-    if(savedGSheetUrl){
-      spreadSheetUrl = savedGSheetUrl;
+    if(savedGEstimationSheetUrl){
+      estimationSheetUrl = savedGEstimationSheetUrl;
     }
     if(cardData){
       cardUrl = cardData.url;
@@ -40,11 +40,11 @@ t.render(function(){
     "&entry.33315152=" + userEmail +
     "&entry.1600294234=" + cardUrl;
     t.set('card', 'shared', 'estimatetime', '10');
-    if (spreadSheetUrl) {
+    if (estimationSheetUrl) {
       getValues = "select B,E,D WHERE C = '" + cardUrl + "'";
 
       $('#switch-hitters').sheetrock({
-        url: spreadSheetUrl,
+        url: estimationSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
           if (error) { $('#estimate-message').text(message); }

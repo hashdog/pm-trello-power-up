@@ -38,18 +38,18 @@ var getBadges = function(t){
   console.log('Compilation: ', 23);
 
   var gEstimationSheetUrl = '';
-  var userEmail = '';
+  var cardUrl = '';
   var timeTracked = '';
 
   return t.get('board', 'shared', 'estimatetimeurl')
   .then(function(savedEstimationSheetUrl) {
-    gEstimationSheetUrl = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845';
-    return t.get('organization', 'private', 'email');
+    gEstimationSheetUrl = savedEstimationSheetUrl;
+    // return t.get('organization', 'private', 'email');
+    return t.card('url');
   })
-  .then(function(userEmail) {
-    userEmail = userEmail;
-    if (gEstimationSheetUrl && userEmail) {
-      getValues = "select sum(F) WHERE B = '" + userEmail + "'";
+  .then(function(cardUrl) {
+    if (gEstimationSheetUrl && cardUrl) {
+      getValues = "select sum(E) WHERE C = '" + cardUrl + "'";
 
       console.log("Before get data");
 
