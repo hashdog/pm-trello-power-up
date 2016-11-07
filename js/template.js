@@ -34,51 +34,8 @@ TrelloPowerUp.initialize({
   }
 });
 
-// var calculateTrackedHours = function() {
-//   // return '3'
-//   // var Promise = TrelloPowerUp.Promise;
-//   // var t = TrelloPowerUp.iframe();
-//   var gEstimationSheetUrl = '';
-//   var userEmail = '';
-
-//   t.render(function(){
-//     return Promise.all([
-//       t.get('board', 'shared', 'estimatetimeurl'),
-//       t.get('organization', 'private', 'email')
-//     ])
-//     .spread(function(savedEstimationSheetUrl, savedUserEmail){
-//       if(savedEstimationSheetUrl){
-//         gEstimationSheetUrl = savedEstimationSheetUrl;
-//       }
-//       if(savedUserEmail){
-//         userEmail = savedUserEmail;
-//       }
-//     })
-
-//     console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-//     console.log('userEmail: ', userEmail);
-//     // getValues = "select sum(F) WHERE D = '" + userEmail + "'";
-//     // console.log('Results: ', getValues);
-
-//     // console.log('Warning: Please add your personal email on settings');
-//     // if (gEstimationSheetUrl && userEmail) {
-//     //   getValues = "select sum(F) WHERE D = '" + userEmail + "'";
-
-//     //   console.log('Results: ', getValues);
-
-//     //   $('#switch-hitters').sheetrock({
-//     //     url: gEstimationSheetUrl,
-//     //     query: getValues,
-//     //     callback: function (error, options, response) {
-//     //       if (error) { console.log('Error :', message); }
-//     //     }
-//     //   }).text();
-//     // }
-//   });
-// };
-
 var getBadges = function(t){
-  console.log('Compilation: ', 18);
+  console.log('Compilation: ', 19);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -100,21 +57,15 @@ var getBadges = function(t){
 
       console.log("Before get data");
 
-      var other = $('body').sheetrock({
+      $('body').sheetrock({
         url: gEstimationSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
           if (!error) {
             timeTracked = $(response.html).find('td').text();
-            console.log(response.html);
-            console.log('timeTracked: ', timeTracked);
 
-            // var badge = $('a[href="' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
-            // .find('.plugin-color-red .badge-text');
-            // console.log('badge: ', badge);
-            // badge.text(timeTracked);
+            console.log("Time: ", timeTracked);
             t.set('card', 'shared', 'trackedtime', timeTracked);
-
           } else {
             console.log('Error :', error);
           }
@@ -122,29 +73,16 @@ var getBadges = function(t){
       }).find('td').text();
     }
 
-    console.log("Other: ", other);
-    console.log("Time: ", timeTracked);
-
-    return [
-      {
-        title: 'Time Tracked',
-        text: t.get('card', 'shared', 'trackedtime'),
-        icon: './images/clock-track.svg', // for card front badges only
-        color: 'red',
-        refresh: 15
-      }
-    ]
-
-    // if(lowercaseName.indexOf('static') > -1){
-    //   // return an array of badge objects
-    //   return [{
-    //     title: 'Global Estimation', // for detail badges only
-    //     text: 'Static',
-    //     icon: icon, // for card front badges only
-    //     color: badgeColor
-    //   }];
-    // } else {
-    //   return [];
-    // }
+    t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
+      return [
+        {
+          title: 'Time Tracked',
+          text: trackedtime,
+          icon: './images/clock-track.svg', // for card front badges only
+          color: 'red',
+          refresh: 15
+        }
+      ]
+    })
   })
 };
