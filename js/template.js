@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 19);
+  console.log('Compilation: ', 20);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
