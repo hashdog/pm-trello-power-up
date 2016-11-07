@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 26);
+  console.log('Compilation: ', 27);
 
   var gTrackingSheetUrl = '';
   var cardUrl = '';
@@ -46,10 +46,12 @@ var getBadges = function(t){
     gTrackingSheetUrl = savedTrackingSheetUrl;
     return t.card('url');
   })
-  .then(function(cardUrl) {
+  .then(function(savedCardUrl) {
+    cardUrl = savedCardUrl;
     if (gTrackingSheetUrl && cardUrl) {
       getValues = "select sum(E) WHERE C = '" + cardUrl + "'";
 
+      console.log("cardUrl: ", cardUrl);
       console.log("gTrackingSheetUrl: ", gTrackingSheetUrl);
       console.log("Before get data");
 
