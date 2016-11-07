@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 22);
+  console.log('Compilation: ', 23);
 
   var gEstimationSheetUrl = '';
   var userEmail = '';
@@ -67,7 +67,7 @@ var getBadges = function(t){
         }
       });
     }
-    t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
+    return t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
       return [
         {
           title: 'Time Tracked',
