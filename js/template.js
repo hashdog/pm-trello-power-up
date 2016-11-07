@@ -72,7 +72,7 @@ var getBadges = function(t){
         }
       }).find('td').text();
     }
-  }).then(function(t){
+  }).then(function(){
     t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
       return [
         {
