@@ -41,7 +41,7 @@ var getBadges = function(t){
   var cardUrl = '';
   var timeTracked = '';
 
-  return t.get('board', 'shared', 'trakingsheet');
+  return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
     gTrackingSheetUrl = savedTrackingSheetUrl;
     return t.card('url');
