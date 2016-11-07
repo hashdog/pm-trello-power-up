@@ -41,7 +41,7 @@ t.render(function(){
     "&entry.1600294234=" + cardUrl;
     t.set('card', 'shared', 'estimatetime', '10');
     if (estimationSheetUrl) {
-      getValues = "select B,E,D WHERE C = '" + cardUrl + "'";
+      getValues = "select B,E,D WHERE D = '" + cardUrl + "'";
 
       $('#switch-hitters').sheetrock({
         url: estimationSheetUrl,
