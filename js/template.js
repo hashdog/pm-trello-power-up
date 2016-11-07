@@ -77,12 +77,12 @@ TrelloPowerUp.initialize({
 //   });
 // };
 
-var gEstimationSheetUrl = '';
-var userEmail = '';
-var timeTracked = '';
-
 var getBadges = function(t){
-  console.log('Compilation: ', 17);
+  console.log('Compilation: ', 18);
+
+  var gEstimationSheetUrl = '';
+  var userEmail = '';
+  var timeTracked = '';
 
   return t.get('board', 'shared', 'estimatetimeurl')
   .then(function(savedEstimationSheetUrl) {
@@ -95,10 +95,40 @@ var getBadges = function(t){
     console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
     console.log('userEmail: ', userEmail);
 
+    if (gEstimationSheetUrl && userEmail) {
+      getValues = "select sum(F) WHERE B = '" + userEmail + "'";
+
+      console.log("Before get data");
+
+      var other = $('body').sheetrock({
+        url: gEstimationSheetUrl,
+        query: getValues,
+        callback: function (error, options, response) {
+          if (!error) {
+            timeTracked = $(response.html).find('td').text();
+            console.log(response.html);
+            console.log('timeTracked: ', timeTracked);
+
+            // var badge = $('a[href="' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
+            // .find('.plugin-color-red .badge-text');
+            // console.log('badge: ', badge);
+            // badge.text(timeTracked);
+            t.set('card', 'shared', 'trackedtime', timeTracked);
+
+          } else {
+            console.log('Error :', error);
+          }
+        }
+      }).find('td').text();
+    }
+
+    console.log("Other: ", other);
+    console.log("Time: ", timeTracked);
+
     return [
       {
         title: 'Time Tracked',
-        text: getTimeTracked(),
+        text: t.get('card', 'shared', 'trackedtime'),
         icon: './images/clock-track.svg', // for card front badges only
         color: 'red',
         refresh: 15
@@ -118,35 +148,3 @@ var getBadges = function(t){
     // }
   })
 };
-
-var getTimeTracked = function(){
-  if (gEstimationSheetUrl && userEmail) {
-    getValues = "select sum(F) WHERE B = '" + userEmail + "'";
-
-    console.log("Before get data");
-
-    var other = $('body').sheetrock({
-      url: gEstimationSheetUrl,
-      query: getValues,
-      callback: function (error, options, response) {
-        if (!error) {
-          timeTracked = $(response.html).find('td').text();
-          console.log(response.html);
-          console.log('timeTracked: ', timeTracked);
-
-          var badge = $('a[href="' + '/c/7vnwoTZO/10-trello-analizar-e-implementar-la-forma-de-sincronizar-un-spreadsheet-con-task-en-trello' + '"]').parent('.list-card-details')
-          .find('.plugin-color-red .badge-text');
-          console.log('badge: ', badge);
-          badge.text(timeTracked);
-
-        } else {
-          console.log('Error :', error);
-        }
-      }
-    }).find('td').text();
-  }
-
-  console.log("Other: ", other);
-  console.log("Time: ", timeTracked);
-  return timeTracked;
-}
