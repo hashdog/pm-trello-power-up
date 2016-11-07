@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t){
-  console.log('Compilation: ', 23);
+  console.log('Compilation: ', 24);
 
   var gEstimationSheetUrl = '';
   var cardUrl = '';
@@ -51,6 +51,7 @@ var getBadges = function(t){
     if (gEstimationSheetUrl && cardUrl) {
       getValues = "select sum(E) WHERE C = '" + cardUrl + "'";
 
+      console.log("gEstimationSheetUrl: ", gEstimationSheetUrl);
       console.log("Before get data");
 
       $('body').sheetrock({
