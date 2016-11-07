@@ -72,7 +72,7 @@ var getBadges = function(t){
         }
       }).find('td').text();
     }
-
+  }).then(function(t){
     t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
       return [
         {
@@ -80,7 +80,7 @@ var getBadges = function(t){
           text: trackedtime,
           icon: './images/clock-track.svg', // for card front badges only
           color: 'red',
-          refresh: 15
+          refresh: 30
         }
       ]
     })
