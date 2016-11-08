@@ -40,31 +40,8 @@ TrelloPowerUp.initialize({
   }
 });
 
-var getEstimatedTime = function(t, gEstimationSheetUrl, cardUrl, getValues){
-  console.log('from function');
-  if (gEstimationSheetUrl) {
-    getValues = "select O WHERE D = '" + cardUrl + "'";
-    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-    console.log('getValues: ', getValues);
-    sheetrock({
-      url: gEstimationSheetUrl,
-      query: getValues,
-      callback: function (error, options, response) {
-        if (!error) {
-          timeEstimated = $(response.html).find('td').text();
-          t.set('card', 'shared', 'estimatedtime', timeEstimated);
-          console.log("Estimated Time: ", timeEstimated);
-        } else {
-          console.log('Estimation ', error);
-        }
-      }
-    });
-  }
-}
-
-
 var getBadges = function(t, card){
-  console.log('Compilation: ', 47);
+  console.log('Compilation: ', 48);
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
@@ -94,12 +71,29 @@ var getBadges = function(t, card){
         }
       });
     }
+    if (gEstimationSheetUrl) {
+      getValues = "select O WHERE D = '" + cardUrl + "'";
+      console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+      console.log('getValues: ', getValues);
+      sheetrock({
+        url: gEstimationSheetUrl,
+        query: getValues,
+        callback: function (error, options, response) {
+          if (!error) {
+            timeEstimated = $(response.html).find('td').text();
+            t.set('card', 'shared', 'estimatedtime', timeEstimated);
+            console.log("Estimated Time: ", timeEstimated);
+          } else {
+            console.log('Estimation ', error);
+          }
+        }
+      });
+    }
     return t.get('card', 'shared', 'trackedtime')
     .then(function(trackedtime) {
       return [
         {
           dynamic: function() {
-            console.log('ok');
             return{
               title: 'Time Tracked',
               text: trackedtime,
