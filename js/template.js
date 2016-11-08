@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 37);
+  console.log('Compilation: ', 38);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -96,13 +96,13 @@ var getBadges = function(t, card){
           {
             title: 'Time Tracked',
             text: trackedtime,
-            // icon: './images/clock-track.svg', // for card front badges only
+            icon: './images/clock-track.svg', // for card front badges only
             color: 'red'
           },
           {
             title: 'Time Estimated',
             text: estimatedtime,
-            // icon: './images/clock-estimation.svg', // for card front badges only
+            icon: './images/clock-estimation.svg', // for card front badges only
             color: 'yellow'
           }
         ]
