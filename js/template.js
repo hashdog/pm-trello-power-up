@@ -94,21 +94,25 @@ var getBadges = function(t, card){
       .then(function(estimatedtime){
         return [
           {
-            dynamic: function(){
-              title: 'Time Tracked',
-              text: trackedtime,
-              icon: './images/clock-track.svg', // for card front badges only
-              color: 'red',
-              refresh: 60
+            dynamic: function() {
+              return{
+                title: 'Time Tracked',
+                text: trackedtime,
+                icon: './images/clock-track.svg', // for card front badges only
+                color: 'red',
+                refresh: 60
+              }
             }
           },
           {
-            dynamic: function(){
-              title: 'Time Estimated',
-              text: estimatedtime,
-              icon: './images/clock-estimation.svg', // for card front badges only
-              color: 'yellow',
-              refresh: 60
+            dynamic: function() {
+              return {
+                title: 'Time Estimated',
+                text: estimatedtime,
+                icon: './images/clock-estimation.svg', // for card front badges only
+                color: 'yellow',
+                refresh: 60
+              }
             }
           }
         ]
