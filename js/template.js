@@ -75,12 +75,21 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var setColor = function(savedEstimatedTime, trackedtime) {
-  estimatedtime = parseFloat(savedEstimatedTime);
-  trackedtime = parseFloat(trackedtime);
+  color = ''
+  if (savedEstimatedTime) {
+    estimatedtime = parseFloat(savedEstimatedTime);
+    trackedtime = parseFloat(trackedtime);
+    trackedPercentage = trackedtime / estimatedtime;
+    color = 'green'
+    if ( 0.5 < value && value < 0.85 ) { color = 'yellow' } else {
+      if ( value >= 0.85 ) { color = 'red' }
+    }
+  }
+  return color;
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 55);
+  console.log('Compilation: ', 56);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -118,8 +127,7 @@ var getBadges = function(t, card){
               title: 'Time Tracked',
               text: trackedtime,
               icon: './images/clock-track.svg',
-              // color: setColor(savedEstimatedTime, trackedtime),
-              color: 'yellow',
+              color: setColor(savedEstimatedTime, trackedtime),
               refresh: 30
             }
           })
@@ -134,7 +142,7 @@ var getBadges = function(t, card){
               title: 'Time Estimated',
               text: estimatedtime,
               icon: './images/clock-estimation.svg',
-              color: 'yellow',
+              color: 'red',
               refresh: 30
             }
           })
