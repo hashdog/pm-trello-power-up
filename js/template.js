@@ -81,15 +81,17 @@ var setColor = function(savedEstimatedTime, trackedtime) {
     trackedtime = parseFloat(trackedtime);
     trackedPercentage = trackedtime / estimatedtime;
     color = 'green'
-    if ( 0.5 < value && value < 0.85 ) { color = 'yellow' } else {
-      if ( value >= 0.85 ) { color = 'red' }
+    if ( 0.5 < trackedPercentage && trackedPercentage < 0.85 ) {
+      color = 'yellow'
+    } else {
+      if ( trackedPercentage >= 0.85 ) { color = 'red' }
     }
   }
   return color;
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 56);
+  console.log('Compilation: ', 57);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
