@@ -55,10 +55,10 @@ var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl) {
 }
 
 var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
-  if (gEstimationSheetUrl) {
+  if (gTrackingSheetUrl) {
     var getValues = "select O WHERE D = '" + cardUrl + "'";
     sheetrock({
-      url: gEstimationSheetUrl,
+      url: gTrackingSheetUrl,
       query: getValues,
       callback: function (error, options, response) {
         if (!error) {
