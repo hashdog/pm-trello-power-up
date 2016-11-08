@@ -25,6 +25,9 @@ TrelloPowerUp.initialize({
   'card-badges': function(t, card) {
     return getBadges(t, card);
   },
+  'card-detail-badges': function(t, card) {
+    return getBadges(t, card);
+  },
   'show-settings': function(t, options){
     return t.popup({
       title: 'Google Form Settings',
@@ -35,7 +38,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 36);
+  console.log('Compilation: ', 37);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
