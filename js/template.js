@@ -34,8 +34,33 @@ TrelloPowerUp.initialize({
   }
 });
 
+var getEstimatedTime = function(gEstimationSheetUrl, cardUrl, getValues){
+  console.log('from function');
+  if (gEstimationSheetUrl) {
+    getValues = "select O WHERE D = '" + cardUrl + "'";
+    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+    console.log('getValues: ', getValues);
+    sheetrock({
+      url: gEstimationSheetUrl,
+      query: getValues,
+      callback: function (error, options, response) {
+        if (!error) {
+          timeEstimated = $(response.html).find('td').text();
+          t.set('card', 'shared', 'estimatedtime', timeEstimated);
+          console.log("Estimated Time: ", timeEstimated);
+        } else {
+          console.log('Estimation ', error);
+        }
+      }
+    });
+  }
+
+  return timeEstimated;
+}
+
+
 var getBadges = function(t, card){
-  console.log('Compilation: ', 41);
+  console.log('Compilation: ', 42);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -110,7 +135,7 @@ var getBadges = function(t, card){
               console.log('ok2');
               return {
                 title: 'Time Estimated',
-                text: estimatedtime,
+                text: getEstimatedTime(gEstimationSheetUrl, cardUrl, getValues),
                 icon: './images/clock-estimation.svg', // for card front badges only
                 color: 'yellow',
                 refresh: 60
