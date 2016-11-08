@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 31);
+  console.log('Compilation: ', 32);
 
   var gTrackingSheetUrl = '';
   var cardUrl = '';
@@ -72,7 +72,7 @@ var getBadges = function(t, card){
           title: 'Time Tracked',
           text: trackedtime,
           icon: './images/clock-track.svg', // for card front badges only
-          color: 'red'
+          color: 'red otro'
         }
       ]
     })
