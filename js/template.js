@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 39);
+  console.log('Compilation: ', 40);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -73,7 +73,8 @@ var getBadges = function(t, card){
     }
     if (gEstimationSheetUrl) {
       getValues = "select O WHERE D = '" + cardUrl + "'";
-
+      console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+      console.log('getValues: ', getValues);
       $('body').sheetrock({
         url: gEstimationSheetUrl,
         query: getValues,
