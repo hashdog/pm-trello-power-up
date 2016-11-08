@@ -34,7 +34,7 @@ TrelloPowerUp.initialize({
   }
 });
 
-var getEstimatedTime = function(gEstimationSheetUrl, cardUrl, getValues){
+var getEstimatedTime = function(t, gEstimationSheetUrl, cardUrl, getValues){
   console.log('from function');
   if (gEstimationSheetUrl) {
     getValues = "select O WHERE D = '" + cardUrl + "'";
@@ -60,7 +60,7 @@ var getEstimatedTime = function(gEstimationSheetUrl, cardUrl, getValues){
 
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 42);
+  console.log('Compilation: ', 43);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -135,7 +135,7 @@ var getBadges = function(t, card){
               console.log('ok2');
               return {
                 title: 'Time Estimated',
-                text: getEstimatedTime(gEstimationSheetUrl, cardUrl, getValues),
+                text: getEstimatedTime(t, gEstimationSheetUrl, cardUrl, getValues),
                 icon: './images/clock-estimation.svg', // for card front badges only
                 color: 'yellow',
                 refresh: 60
