@@ -23,7 +23,7 @@ TrelloPowerUp.initialize({
     }];
   },
   'card-badges': function(t, card) {
-    return getBadges(t);
+    return getBadges(t, card);
   },
   'show-settings': function(t, options){
     return t.popup({
@@ -34,8 +34,8 @@ TrelloPowerUp.initialize({
   }
 });
 
-var getBadges = function(t){
-  console.log('Compilation: ', 29);
+var getBadges = function(t, card){
+  console.log('Compilation: ', 30);
 
   var gTrackingSheetUrl = '';
   var cardUrl = '';
@@ -51,11 +51,6 @@ var getBadges = function(t){
     cardUrl = savedCardUrl;
     if (gTrackingSheetUrl && cardUrl) {
       getValues = "select sum(F) WHERE D = '" + cardUrl + "'";
-
-      console.log("cardUrl: ", cardUrl);
-      console.log("getValues: ", getValues);
-      console.log("gTrackingSheetUrl: ", gTrackingSheetUrl);
-      console.log("Before get data");
 
       $('body').sheetrock({
         url: gTrackingSheetUrl,
@@ -73,12 +68,14 @@ var getBadges = function(t){
     }
     return t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
       return [
-        {
-          title: 'Time Tracked',
-          text: trackedtime,
-          icon: './images/clock-track.svg', // for card front badges only
-          color: 'red',
-          refresh: 30
+        dynamic: function(){
+          return {
+            title: 'Time Tracked',
+            text: trackedtime,
+            icon: './images/clock-track.svg', // for card front badges only
+            color: 'red',
+            refresh: 30
+          }
         }
       ]
     })
