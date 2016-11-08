@@ -98,16 +98,14 @@ var getBadges = function(t, card){
             return{
               title: 'Time Tracked',
               text: trackedtime,
-              icon: './images/clock-track.svg', // for card front badges only
+              icon: './images/clock-track.svg',
               color: 'red',
-              refresh: 60
+              refresh: 2700
             }
           }
         },
         {
           dynamic: function() {
-            console.log('ok2');
-
             if (gEstimationSheetUrl) {
               getValues = "select O WHERE D = '" + cardUrl + "'";
               console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
@@ -133,9 +131,9 @@ var getBadges = function(t, card){
               return {
                 title: 'Time Estimated',
                 text: estimatedtime,
-                icon: './images/clock-estimation.svg', // for card front badges only
+                icon: './images/clock-estimation.svg',
                 color: 'yellow',
-                refresh: 60
+                refresh: 2700
               }
             })
           }
