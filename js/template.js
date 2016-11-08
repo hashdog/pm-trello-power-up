@@ -75,15 +75,13 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var setColor = function(savedEstimatedTime, trackedtime) {
-  var color = ''
+  var color = 'green'
   if (savedEstimatedTime) {
     estimatedtime = parseFloat(savedEstimatedTime);
     trackedtime = parseFloat(trackedtime);
+
     trackedPercentage = trackedtime / estimatedtime;
 
-    console.log('trackedPercentage: ', trackedPercentage);
-
-    color = 'green'
     if ( 0.5 < trackedPercentage && trackedPercentage < 0.85 ) {
       color = 'yellow'
     } else {
@@ -94,7 +92,7 @@ var setColor = function(savedEstimatedTime, trackedtime) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 58);
+  console.log('Compilation: ', 59);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
