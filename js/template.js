@@ -56,7 +56,7 @@ var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl) {
 
 var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
   if (gTrackingSheetUrl) {
-    var getValues = "select O WHERE D = '" + cardUrl + "'";
+    var getValues = "select sum(F) WHERE D = '" + cardUrl + "'";
     sheetrock({
       url: gTrackingSheetUrl,
       query: getValues,
@@ -74,8 +74,13 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
   }
 }
 
+var setColor = function(savedEstimatedTime, trackedtime) {
+  estimatedtime = parseFloat(savedEstimatedTime);
+  trackedtime = parseFloat(trackedtime);
+}
+
 var getBadges = function(t, card){
-  console.log('Compilation: ', 53);
+  console.log('Compilation: ', 54);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -103,12 +108,17 @@ var getBadges = function(t, card){
         dynamic: function() {
           getTrackingTime(t, gTrackingSheetUrl, cardUrl);
           return t.get('card', 'shared', 'trackedtime')
-          .then(function(trackedtime) {
+          .then(function(savedTrackedTime){
+            var trackedtime = savedTrackedTime
+            return t.get('card', 'shared', 'estimatedtime')
+          })
+          .then(function(savedEstimatedTime) {
             return{
               title: 'Time Tracked',
               text: trackedtime,
               icon: './images/clock-track.svg',
-              color: 'red',
+              // color: setColor(savedEstimatedTime, trackedtime),
+              color: 'yellow',
               refresh: 30
             }
           })
