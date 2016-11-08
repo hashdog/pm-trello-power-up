@@ -34,8 +34,31 @@ TrelloPowerUp.initialize({
   }
 });
 
+var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl, getValues) {
+  if (gEstimationSheetUrl) {
+    getValues = "select O WHERE D = '" + cardUrl + "'";
+    console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+    console.log('getValues: ', getValues);
+    sheetrock({
+      url: gEstimationSheetUrl,
+      query: getValues,
+      callback: function (error, options, response) {
+        if (!error) {
+          timeEstimated = $(response.html).find('td').text();
+          t.set('card', 'shared', 'estimatedtime', timeEstimated);
+          console.log("Estimated Time: ", timeEstimated);
+        } else {
+          console.log('Estimation ', error);
+        }
+      },
+      reset: true
+    });
+  }
+}
+
 var getBadges = function(t, card){
-  console.log('Compilation: ', 50);
+  console.log('Compilation: ', 51);
+
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
   var cardUrl = '';
@@ -71,25 +94,26 @@ var getBadges = function(t, card){
         reset: true
       });
     }
-    if (gEstimationSheetUrl) {
-      getValues = "select O WHERE D = '" + cardUrl + "'";
-      console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-      console.log('getValues: ', getValues);
-      sheetrock({
-        url: gEstimationSheetUrl,
-        query: getValues,
-        callback: function (error, options, response) {
-          if (!error) {
-            timeEstimated = $(response.html).find('td').text();
-            t.set('card', 'shared', 'estimatedtime', timeEstimated);
-            console.log("Estimated Time: ", timeEstimated);
-          } else {
-            console.log('Estimation ', error);
-          }
-        },
-        reset: true
-      });
-    }
+    getEstimationTime(t, gEstimationSheetUrl, cardUrl, getValues);
+    // if (gEstimationSheetUrl) {
+    //   getValues = "select O WHERE D = '" + cardUrl + "'";
+    //   console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+    //   console.log('getValues: ', getValues);
+    //   sheetrock({
+    //     url: gEstimationSheetUrl,
+    //     query: getValues,
+    //     callback: function (error, options, response) {
+    //       if (!error) {
+    //         timeEstimated = $(response.html).find('td').text();
+    //         t.set('card', 'shared', 'estimatedtime', timeEstimated);
+    //         console.log("Estimated Time: ", timeEstimated);
+    //       } else {
+    //         console.log('Estimation ', error);
+    //       }
+    //     },
+    //     reset: true
+    //   });
+    // }
     return t.get('card', 'shared', 'trackedtime')
     .then(function(trackedtime) {
       return [
@@ -106,25 +130,26 @@ var getBadges = function(t, card){
         },
         {
           dynamic: function() {
-            if (gEstimationSheetUrl) {
-              getValues = "select O WHERE D = '" + cardUrl + "'";
-              console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
-              console.log('getValues: ', getValues);
-              sheetrock({
-                url: gEstimationSheetUrl,
-                query: getValues,
-                callback: function (error, options, response) {
-                  if (!error) {
-                    timeEstimated = $(response.html).find('td').text();
-                    t.set('card', 'shared', 'estimatedtime', timeEstimated);
-                    console.log("Estimated Time: ", timeEstimated);
-                  } else {
-                    console.log('Estimation ', error);
-                  }
-                },
-                reset: true
-              });
-            }
+            getEstimationTime(t, gEstimationSheetUrl, cardUrl, getValues);
+            // if (gEstimationSheetUrl) {
+            //   getValues = "select O WHERE D = '" + cardUrl + "'";
+            //   console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+            //   console.log('getValues: ', getValues);
+            //   sheetrock({
+            //     url: gEstimationSheetUrl,
+            //     query: getValues,
+            //     callback: function (error, options, response) {
+            //       if (!error) {
+            //         timeEstimated = $(response.html).find('td').text();
+            //         t.set('card', 'shared', 'estimatedtime', timeEstimated);
+            //         console.log("Estimated Time: ", timeEstimated);
+            //       } else {
+            //         console.log('Estimation ', error);
+            //       }
+            //     },
+            //     reset: true
+            //   });
+            // }
 
             return t.get('card', 'shared', 'estimatedtime')
             .then(function(estimatedtime){
