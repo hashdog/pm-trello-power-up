@@ -25,9 +25,6 @@ TrelloPowerUp.initialize({
   'card-badges': function(t, card) {
     return getBadges(t, card);
   },
-  'card-detail-badges': function(t, card) {
-    return getBadges(t, card);
-  },
   'show-settings': function(t, options){
     return t.popup({
       title: 'Google Form Settings',
@@ -99,13 +96,13 @@ var getBadges = function(t, card){
           {
             title: 'Time Tracked',
             text: trackedtime,
-            icon: './images/clock-track.svg', // for card front badges only
+            // icon: './images/clock-track.svg', // for card front badges only
             color: 'red'
           },
           {
             title: 'Time Estimated',
             text: estimatedtime,
-            icon: './images/clock-estimation.svg', // for card front badges only
+            // icon: './images/clock-estimation.svg', // for card front badges only
             color: 'yellow'
           }
         ]
