@@ -35,9 +35,10 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 33);
+  console.log('Compilation: ', 34);
 
   var gTrackingSheetUrl = '';
+  var gEstimationSheetUrl = '';
   var cardUrl = '';
   var timeTracked = '';
   var timeTracked = '';
@@ -45,12 +46,15 @@ var getBadges = function(t, card){
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
     gTrackingSheetUrl = savedTrackingSheetUrl;
-    return t.card('url')
-    .get('url')
+    return t.get('board', 'shared', 'estimationsheet')
+  })
+  .then(function(savedEstimationSheetUrl) {
+    gEstimationSheetUrl = savedEstimationSheetUrl;
+    return t.card('url').get('url')
   })
   .then(function(savedCardUrl) {
     cardUrl = savedCardUrl;
-    if (gTrackingSheetUrl && cardUrl) {
+    if (gTrackingSheetUrl) {
       getValues = "select sum(F) WHERE D = '" + cardUrl + "'";
 
       $('body').sheetrock({
@@ -60,9 +64,26 @@ var getBadges = function(t, card){
           if (!error) {
             timeTracked = $(response.html).find('td').text();
             t.set('card', 'shared', 'trackedtime', timeTracked);
-            console.log("Time: ", timeTracked);
+            console.log("Tracked Time: ", timeTracked);
           } else {
-            console.log('Error :', error);
+            console.log(error);
+          }
+        }
+      });
+    }
+    if (gEstimationSheetUrl) {
+      getValues = "select O WHERE D = '" + cardUrl + "'";
+
+      $('body').sheetrock({
+        url: gTrackingSheetUrl,
+        query: getValues,
+        callback: function (error, options, response) {
+          if (!error) {
+            timeEstimated = $(response.html).find('td').text();
+            t.set('card', 'shared', 'estimatedtime', timeEstimated);
+            console.log("Estimated Time: ", timeEstimated);
+          } else {
+            console.log(error);
           }
         }
       });
@@ -82,7 +103,7 @@ var getBadges = function(t, card){
         {
           title: 'Time Estimated',
           text: estimatedtime,
-          icon: './images/clock-track.svg', // for card front badges only
+          icon: './images/clock-estimation.svg', // for card front badges only
           color: 'yellow'
         }
       ]
