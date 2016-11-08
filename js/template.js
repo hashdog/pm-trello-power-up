@@ -35,7 +35,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 38);
+  console.log('Compilation: ', 39);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -66,7 +66,7 @@ var getBadges = function(t, card){
             t.set('card', 'shared', 'trackedtime', timeTracked);
             console.log("Tracked Time: ", timeTracked);
           } else {
-            console.log(error);
+            console.log('Traking ', error);
           }
         }
       });
@@ -83,7 +83,7 @@ var getBadges = function(t, card){
             t.set('card', 'shared', 'estimatedtime', timeEstimated);
             console.log("Estimated Time: ", timeEstimated);
           } else {
-            console.log(error);
+            console.log('Estimation ', error);
           }
         }
       });
@@ -94,16 +94,22 @@ var getBadges = function(t, card){
       .then(function(estimatedtime){
         return [
           {
-            title: 'Time Tracked',
-            text: trackedtime,
-            icon: './images/clock-track.svg', // for card front badges only
-            color: 'red'
+            dynamic: function(){
+              title: 'Time Tracked',
+              text: trackedtime,
+              icon: './images/clock-track.svg', // for card front badges only
+              color: 'red',
+              refresh: 60
+            }
           },
           {
-            title: 'Time Estimated',
-            text: estimatedtime,
-            icon: './images/clock-estimation.svg', // for card front badges only
-            color: 'yellow'
+            dynamic: function(){
+              title: 'Time Estimated',
+              text: estimatedtime,
+              icon: './images/clock-estimation.svg', // for card front badges only
+              color: 'yellow',
+              refresh: 60
+            }
           }
         ]
       })
