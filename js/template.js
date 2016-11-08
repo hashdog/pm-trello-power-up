@@ -57,7 +57,7 @@ var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl, getValues) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 51);
+  console.log('Compilation: ', 52);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -124,7 +124,7 @@ var getBadges = function(t, card){
               text: trackedtime,
               icon: './images/clock-track.svg',
               color: 'red',
-              refresh: 2700
+              refresh: 30
             }
           }
         },
@@ -158,7 +158,7 @@ var getBadges = function(t, card){
                 text: estimatedtime,
                 icon: './images/clock-estimation.svg',
                 color: 'yellow',
-                refresh: 2700
+                refresh: 30
               }
             })
           }
