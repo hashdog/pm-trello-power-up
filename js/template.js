@@ -60,13 +60,11 @@ var getEstimatedTime = function(t, gEstimationSheetUrl, cardUrl, getValues){
       }
     });
   }
-
-  return timeEstimated;
 }
 
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 46);
+  console.log('Compilation: ', 47);
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
@@ -114,7 +112,26 @@ var getBadges = function(t, card){
         {
           dynamic: function() {
             console.log('ok2');
-            getEstimatedTime(t, gEstimationSheetUrl, cardUrl, getValues);
+
+            if (gEstimationSheetUrl) {
+              getValues = "select O WHERE D = '" + cardUrl + "'";
+              console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
+              console.log('getValues: ', getValues);
+              sheetrock({
+                url: gEstimationSheetUrl,
+                query: getValues,
+                callback: function (error, options, response) {
+                  if (!error) {
+                    timeEstimated = $(response.html).find('td').text();
+                    t.set('card', 'shared', 'estimatedtime', timeEstimated);
+                    console.log("Estimated Time: ", timeEstimated);
+                  } else {
+                    console.log('Estimation ', error);
+                  }
+                }
+              });
+            }
+
             return t.get('card', 'shared', 'estimatedtime')
             .then(function(estimatedtime){
               return {
