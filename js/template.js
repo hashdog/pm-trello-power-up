@@ -67,7 +67,7 @@ var getBadges = function(t, card){
       });
     }
     return t.get('card', 'shared', 'trackedtime').then(function(trackedtime){
-      return [
+      return {
         dynamic: function(){
           return {
             title: 'Time Tracked',
@@ -77,7 +77,7 @@ var getBadges = function(t, card){
             refresh: 30
           }
         }
-      ]
+      }
     })
   })
 };
