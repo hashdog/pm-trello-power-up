@@ -41,7 +41,7 @@ TrelloPowerUp.initialize({
 });
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 48);
+  console.log('Compilation: ', 49);
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
@@ -68,7 +68,8 @@ var getBadges = function(t, card){
           } else {
             console.log('Traking ', error);
           }
-        }
+        },
+        reset: true
       });
     }
     if (gEstimationSheetUrl) {
@@ -86,7 +87,8 @@ var getBadges = function(t, card){
           } else {
             console.log('Estimation ', error);
           }
-        }
+        },
+        reset: true
       });
     }
     return t.get('card', 'shared', 'trackedtime')
@@ -122,7 +124,8 @@ var getBadges = function(t, card){
                   } else {
                     console.log('Estimation ', error);
                   }
-                }
+                },
+                reset: true
               });
             }
 
