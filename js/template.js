@@ -41,7 +41,6 @@ var getBadges = function(t, card){
   var gEstimationSheetUrl = '';
   var cardUrl = '';
   var timeTracked = '';
-  var timeTracked = '';
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
@@ -57,7 +56,7 @@ var getBadges = function(t, card){
     if (gTrackingSheetUrl) {
       getValues = "select sum(F) WHERE D = '" + cardUrl + "'";
 
-      $('body').sheetrock({
+      sheetrock({
         url: gTrackingSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
@@ -75,7 +74,7 @@ var getBadges = function(t, card){
       getValues = "select O WHERE D = '" + cardUrl + "'";
       console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
       console.log('getValues: ', getValues);
-      $('body').sheetrock({
+      sheetrock({
         url: gEstimationSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
@@ -96,6 +95,7 @@ var getBadges = function(t, card){
         return [
           {
             dynamic: function() {
+              console.log('ok');
               return{
                 title: 'Time Tracked',
                 text: trackedtime,
@@ -107,6 +107,7 @@ var getBadges = function(t, card){
           },
           {
             dynamic: function() {
+              console.log('ok2');
               return {
                 title: 'Time Estimated',
                 text: estimatedtime,
