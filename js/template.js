@@ -66,7 +66,7 @@ var getEstimatedTime = function(t, gEstimationSheetUrl, cardUrl, getValues){
 
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 45);
+  console.log('Compilation: ', 46);
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
@@ -96,53 +96,38 @@ var getBadges = function(t, card){
         }
       });
     }
-    // if (gEstimationSheetUrl) {
-    //   getValues = "select O WHERE D = '" + cardUrl + "'";
-    //   sheetrock({
-    //     url: gEstimationSheetUrl,
-    //     query: getValues,
-    //     callback: function (error, options, response) {
-    //       if (!error) {
-    //         timeEstimated = $(response.html).find('td').text();
-    //         t.set('card', 'shared', 'estimatedtime', timeEstimated);
-    //         console.log("Estimated Time: ", timeEstimated);
-    //       } else {
-    //         console.log('Estimation ', error);
-    //       }
-    //     }
-    //   });
-    // }
     return t.get('card', 'shared', 'trackedtime')
     .then(function(trackedtime) {
-      return t.get('card', 'shared', 'estimatedtime')
-      .then(function(estimatedtime){
-        return [
-          {
-            dynamic: function() {
-              console.log('ok');
-              return{
-                title: 'Time Tracked',
-                text: trackedtime,
-                icon: './images/clock-track.svg', // for card front badges only
-                color: 'red',
-                refresh: 60
-              }
+      return [
+        {
+          dynamic: function() {
+            console.log('ok');
+            return{
+              title: 'Time Tracked',
+              text: trackedtime,
+              icon: './images/clock-track.svg', // for card front badges only
+              color: 'red',
+              refresh: 60
             }
-          },
-          {
-            dynamic: function() {
-              console.log('ok2');
+          }
+        },
+        {
+          dynamic: function() {
+            console.log('ok2');
+            getEstimatedTime(t, gEstimationSheetUrl, cardUrl, getValues);
+            return t.get('card', 'shared', 'estimatedtime')
+            .then(function(estimatedtime){
               return {
                 title: 'Time Estimated',
-                text: getEstimatedTime(t, gEstimationSheetUrl, cardUrl, getValues),
+                text: estimatedtime,
                 icon: './images/clock-estimation.svg', // for card front badges only
                 color: 'yellow',
                 refresh: 60
               }
-            }
+            })
           }
-        ]
-      })
+        }
+      ]
     })
   })
 };
