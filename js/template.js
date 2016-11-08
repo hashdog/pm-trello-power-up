@@ -1,3 +1,9 @@
+var gTrackingSheetUrl = '';
+var gEstimationSheetUrl = '';
+var cardUrl = '';
+var timeTracked = '';
+var timeEstimated = '';
+
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
@@ -60,12 +66,7 @@ var getEstimatedTime = function(t, gEstimationSheetUrl, cardUrl, getValues){
 
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 43);
-
-  var gTrackingSheetUrl = '';
-  var gEstimationSheetUrl = '';
-  var cardUrl = '';
-  var timeTracked = '';
+  console.log('Compilation: ', 44);
 
   return t.get('board', 'shared', 'trakingsheet')
   .then(function(savedTrackingSheetUrl) {
