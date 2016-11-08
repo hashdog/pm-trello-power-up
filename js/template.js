@@ -80,7 +80,7 @@ var setColor = function(savedEstimatedTime, trackedtime) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 54);
+  console.log('Compilation: ', 55);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -107,9 +107,10 @@ var getBadges = function(t, card){
       {
         dynamic: function() {
           getTrackingTime(t, gTrackingSheetUrl, cardUrl);
+          var trackedtime = '';
           return t.get('card', 'shared', 'trackedtime')
           .then(function(savedTrackedTime){
-            var trackedtime = savedTrackedTime
+            trackedtime = savedTrackedTime
             return t.get('card', 'shared', 'estimatedtime')
           })
           .then(function(savedEstimatedTime) {
