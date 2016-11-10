@@ -1,7 +1,7 @@
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
-      icon: './images/icon-gray.svg',
+      icon: './images/clock-track.svg',
       text: 'Time track',
       callback: function(t){
         return t.overlay({
@@ -12,7 +12,7 @@ TrelloPowerUp.initialize({
       }
     },
     {
-      icon: './images/icon-gray.svg',
+      icon: './images/clock-estimation.svg',
       text: 'Estimate Card',
       callback: function(t){
         return t.overlay({
