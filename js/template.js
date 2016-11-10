@@ -75,7 +75,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 65);
+  console.log('Compilation: ', 66);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
