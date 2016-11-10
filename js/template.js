@@ -75,7 +75,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 61);
+  console.log('Compilation: ', 62);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -89,13 +89,11 @@ var getBadges = function(t, card){
     return t.get('board', 'shared', 'estimationsheet')
   })
   .then(function(savedEstimationSheetUrl) {
-    gEstimationSheetUrl = savedEstimationSheetUrl;
+    gEstimationSheetUrl = savedEstimationSheetUrl.replace(/gid=\d*/g, "gid=0");
     return t.card('url').get('url')
   })
   .then(function(savedCardUrl) {
-    cardUrl = savedCardUrl.replace(/gid=\d*/g, "gid=0");
-
-    console.log(cardUrl);
+    cardUrl = savedCardUrl;
 
     getTrackingTime(t, gTrackingSheetUrl, cardUrl);
     getEstimationTime(t, gEstimationSheetUrl, cardUrl);
@@ -107,7 +105,7 @@ var getBadges = function(t, card){
           var trackedtime = '';
           return t.get('card', 'shared', 'trackedtime')
           .then(function(savedTrackedTime){
-            trackedtime = "TRK: #{savedTrackedTime}";
+            trackedtime = "TRK: " + savedTrackedTime;
             return{
               title: 'Time Tracked',
               text: trackedtime,
@@ -123,7 +121,7 @@ var getBadges = function(t, card){
           var estimatedtime = '';
           return t.get('card', 'shared', 'estimatedtime')
           .then(function(savedEstimatedtime){
-            estimatedtime = "EST: #{savedEstimatedtime}";
+            estimatedtime = "EST: " + savedEstimatedtime;
             return {
               title: 'Time Estimated',
               text: estimatedtime,
