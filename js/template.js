@@ -106,7 +106,7 @@ var getBadges = function(t, card){
           .then(function(savedTrackedTime){
             return{
               title: 'Time Tracked',
-              text: savedTrackedTime == '' ? 0 : savedTrackedTime,
+              text: savedTrackedTime == '' ? '0' : savedTrackedTime,
               icon: './images/clock-track.svg',
               refresh: 30
             }
@@ -118,12 +118,9 @@ var getBadges = function(t, card){
           getEstimationTime(t, gEstimationSheetUrl, cardUrl);
           return t.get('card', 'shared', 'estimatedtime')
           .then(function(savedEstimatedtime){
-            console.log(savedEstimatedtime);
-            console.log(savedEstimatedtime == '');
-            console.log(savedEstimatedtime.length == 0);
             return {
               title: 'Time Estimated',
-              text: savedEstimatedtime == '' ? 0 : savedEstimatedtime,
+              text: savedEstimatedtime == '' ? '0' : savedEstimatedtime,
               icon: './images/clock-estimation.svg',
               refresh: 30
             }
