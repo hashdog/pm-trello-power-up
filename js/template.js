@@ -75,7 +75,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 62);
+  console.log('Compilation: ', 63);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -102,13 +102,11 @@ var getBadges = function(t, card){
       {
         dynamic: function() {
           getTrackingTime(t, gTrackingSheetUrl, cardUrl);
-          var trackedtime = '';
           return t.get('card', 'shared', 'trackedtime')
           .then(function(savedTrackedTime){
-            trackedtime = "TRK: " + savedTrackedTime;
             return{
               title: 'Time Tracked',
-              text: trackedtime,
+              text: savedTrackedTime,
               icon: './images/clock-track.svg',
               refresh: 30
             }
@@ -118,13 +116,11 @@ var getBadges = function(t, card){
       {
         dynamic: function() {
           getEstimationTime(t, gEstimationSheetUrl, cardUrl);
-          var estimatedtime = '';
           return t.get('card', 'shared', 'estimatedtime')
           .then(function(savedEstimatedtime){
-            estimatedtime = "EST: " + savedEstimatedtime;
             return {
               title: 'Time Estimated',
-              text: estimatedtime,
+              text: savedEstimatedtime,
               icon: './images/clock-estimation.svg',
               refresh: 30
             }
