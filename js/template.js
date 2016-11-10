@@ -75,7 +75,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 63);
+  console.log('Compilation: ', 64);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -106,7 +106,7 @@ var getBadges = function(t, card){
           .then(function(savedTrackedTime){
             return{
               title: 'Time Tracked',
-              text: savedTrackedTime,
+              text: savedTrackedTime == '' ? 0 : savedTrackedTime,
               icon: './images/clock-track.svg',
               refresh: 30
             }
@@ -120,7 +120,7 @@ var getBadges = function(t, card){
           .then(function(savedEstimatedtime){
             return {
               title: 'Time Estimated',
-              text: savedEstimatedtime,
+              text: savedEstimatedtime == '' ? 0 : savedEstimatedtime,
               icon: './images/clock-estimation.svg',
               refresh: 30
             }
