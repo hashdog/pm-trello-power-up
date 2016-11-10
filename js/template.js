@@ -75,7 +75,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 64);
+  console.log('Compilation: ', 65);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -118,6 +118,9 @@ var getBadges = function(t, card){
           getEstimationTime(t, gEstimationSheetUrl, cardUrl);
           return t.get('card', 'shared', 'estimatedtime')
           .then(function(savedEstimatedtime){
+            console.log(savedEstimatedtime);
+            console.log(savedEstimatedtime == '');
+            console.log(savedEstimatedtime.length == 0);
             return {
               title: 'Time Estimated',
               text: savedEstimatedtime == '' ? 0 : savedEstimatedtime,
