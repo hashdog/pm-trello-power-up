@@ -43,12 +43,14 @@ t.render(function(){
     if (estimationSheetUrl) {
       getValues = "select B,E,D WHERE D = '" + cardUrl + "'";
 
-      $('#switch-hitters').sheetrock({
+      $('#estimation-table').sheetrock({
         url: estimationSheetUrl,
         query: getValues,
         callback: function (error, options, response) {
           if (error) { $('#estimate-message').text(message); }
-        }
+        },
+        labels: ['developer', 'estimated time', 'comment'],
+        reset: true
       });
     } else {
       $('#estimate-message').text(message);

@@ -74,25 +74,8 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
   }
 }
 
-var setColor = function(savedEstimatedTime, trackedtime) {
-  var color = 'green'
-  if (savedEstimatedTime) {
-    estimatedtime = parseFloat(savedEstimatedTime);
-    trackedtime = parseFloat(trackedtime);
-
-    trackedPercentage = trackedtime / estimatedtime;
-
-    if ( 0.5 < trackedPercentage && trackedPercentage < 0.85 ) {
-      color = 'yellow'
-    } else {
-      if ( trackedPercentage >= 0.85 ) { color = 'red' }
-    }
-  }
-  return color;
-}
-
 var getBadges = function(t, card){
-  console.log('Compilation: ', 59);
+  console.log('Compilation: ', 60);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
@@ -110,7 +93,7 @@ var getBadges = function(t, card){
     return t.card('url').get('url')
   })
   .then(function(savedCardUrl) {
-    cardUrl = savedCardUrl;
+    cardUrl = savedCardUrl.replace(/gid=\d*/g, "gid=0");
 
     getTrackingTime(t, gTrackingSheetUrl, cardUrl);
     getEstimationTime(t, gEstimationSheetUrl, cardUrl);
@@ -122,15 +105,12 @@ var getBadges = function(t, card){
           var trackedtime = '';
           return t.get('card', 'shared', 'trackedtime')
           .then(function(savedTrackedTime){
-            trackedtime = savedTrackedTime
-            return t.get('card', 'shared', 'estimatedtime')
-          })
-          .then(function(savedEstimatedTime) {
+            trackedtime = "TRK: #{savedTrackedTime}";
             return{
               title: 'Time Tracked',
               text: trackedtime,
               icon: './images/clock-track.svg',
-              color: setColor(savedEstimatedTime, trackedtime),
+              color: '',
               refresh: 30
             }
           })
@@ -139,13 +119,15 @@ var getBadges = function(t, card){
       {
         dynamic: function() {
           getEstimationTime(t, gEstimationSheetUrl, cardUrl);
+          var estimatedtime = '';
           return t.get('card', 'shared', 'estimatedtime')
-          .then(function(estimatedtime){
+          .then(function(savedEstimatedtime){
+            estimatedtime = "EST: #{savedEstimatedtime}";
             return {
               title: 'Time Estimated',
               text: estimatedtime,
               icon: './images/clock-estimation.svg',
-              color: 'red',
+              color: '',
               refresh: 30
             }
           })
