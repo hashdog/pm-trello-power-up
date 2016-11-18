@@ -42,7 +42,7 @@ var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl) {
 
     // Get the estimation column letter
     sheetrock({
-      url: mySpreadsheet,
+      url: gEstimationSheetUrl,
       query: "select *",
       callback: function (error, options, response) {
         if (!error) {
