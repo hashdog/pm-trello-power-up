@@ -36,7 +36,28 @@ TrelloPowerUp.initialize({
 
 var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl) {
   if (gEstimationSheetUrl) {
-    var getValues = "select O WHERE D = '" + cardUrl + "'";
+    var estimationColumn = "O";
+    var estimationCardUrl = "D";
+
+    sheetrock({
+      url: gEstimationSheetUrl,
+      query: getValues,
+      callback: function (error, options, response) {
+        if (!error) {
+          $.each($(response.html).find('td'), function(index, td){
+            console.log('value: ', $(td).text());
+            console.log('index: ', index);
+          });
+        } else {
+          console.log('Estimation ', error);
+        }
+      },
+      fetchSize: 1,
+      reset: true
+    });
+
+
+    var getValues = "select "+ estimationColumn +" WHERE "+ estimationCardUrl+ " = '" + cardUrl + "'";
     sheetrock({
       url: gEstimationSheetUrl,
       query: getValues,
@@ -75,7 +96,7 @@ var getTrackingTime = function(t, gTrackingSheetUrl, cardUrl) {
 }
 
 var getBadges = function(t, card){
-  console.log('Compilation: ', 67);
+  console.log('Compilation: ', 68);
 
   var gTrackingSheetUrl = '';
   var gEstimationSheetUrl = '';
