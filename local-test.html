@@ -36,19 +36,35 @@
   // console.log('gEstimationSheetUrl: ', gEstimationSheetUrl);
   // console.log('userEmail: ', userEmail);
 
-  var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845'
+  var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1dqBoWSThdbbgKqCwUy-hbk9w_K8EDhfni5t44OSnddE/edit#gid=0'
+  // var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1_1o8qHdUPdgzwZEV5PDx3VDt9IoByaeJDNcOAAIQZ7M/edit#gid=440459845'
 
+  var estimationColumn = "O";
+  var estimationCardUrl = "D";
+  var cardUrl = "https://trello.com/c/OiJlk2de/1-card1";
+  var getValues = "select *";
+  var columnNumber = '';
+  console.log('getValues: ', getValues);
   sheetrock({
     url: mySpreadsheet,
-    query: "select sum(F) WHERE D = 'https://trello.com/c/fjlB7OOA/20-investigar-acerca-de-la-extension-para-un-dogger-3d'",
+    query: getValues,
     callback: function (error, options, response) {
+      console.log(response);
       if (!error) {
-        console.log('html', response.html);
-        console.log('callback: ', $(response.html).find('td').text());
+        $.each($(response.rows[0].labels), function(index, columnName){
+          if (columnName == 'TeamEstimation') {
+            columnNumber = index
+          }
+        });
+
+        console.log(String.fromCharCode(65+columnNumber));
+        // console.log('html', response.html);
+        // console.log('callback: ', $(response.html).find('td').text());
       } else {
-        console.log('Error :', message);
+        console.log('Error :', error);
       }
-    }
+    },
+    fetchSize: 1
   });
 
 </script>

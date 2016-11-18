@@ -1,4 +1,4 @@
-console.log('Compilation: ', 69);
+console.log('Compilation: ', 70);
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options){
     return [{
@@ -37,28 +37,32 @@ TrelloPowerUp.initialize({
 
 var getEstimationTime = function(t, gEstimationSheetUrl, cardUrl) {
   if (gEstimationSheetUrl) {
-    var estimationColumn = "O";
-    var estimationCardUrl = "D";
-    var getValues = "select "+ estimationColumn +" WHERE "+ estimationCardUrl+ " = '" + cardUrl + "'";
+    var cardUrlColumnLetter = 'D';
+    var estimationColumnLetter = 'O';
 
+    // Get the estimation column letter
     sheetrock({
-      url: gEstimationSheetUrl,
-      query: getValues,
+      url: mySpreadsheet,
+      query: "select *",
       callback: function (error, options, response) {
         if (!error) {
-          $.each($(response.html).find('td'), function(index, td){
-            console.log('value: ', $(td).text());
-            console.log('index: ', index);
+          $.each($(response.rows[0].labels), function(index, columnName) {
+            if (columnName == 'URL') {
+              estimationColumnLetter = String.fromCharCode(65+index);
+            }
+            if (columnName == 'TeamEstimation') {
+              estimationColumnLetter = String.fromCharCode(65+index);
+            }
           });
         } else {
-          console.log('Estimation ', error);
+          console.log('Get column name :', error);
         }
       },
-      fetchSize: 1,
-      reset: true
+      fetchSize: 1
     });
 
-
+    // Get estimation value
+    var getValues = "select "+ estimationColumnLetter +" WHERE "+ cardUrlColumnLetter + " = '" + cardUrl + "'";
     sheetrock({
       url: gEstimationSheetUrl,
       query: getValues,
